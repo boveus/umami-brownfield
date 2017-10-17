@@ -33,7 +33,9 @@ class Item < ApplicationRecord
   end
 
   def price_for_item_at_order
-    order_items.first.item_price_record / 100
+    order_items
+    .first
+    .item_price_record / 100
   end
 
 end
