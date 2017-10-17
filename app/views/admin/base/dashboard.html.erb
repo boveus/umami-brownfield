@@ -40,7 +40,7 @@
               <td><%= order.user.name %></td>
               <td><a><%= link_to order.created_at.strftime('%a %b %e %Y %H:%M'), admin_order_path(order) %></a></td>
               <td><%= order.total_quantity %></td>
-              <td><%= order.total_price_when_ordered %></td>
+              <td><%= number_to_currency(order.total_price_when_ordered) %></td>
               <td><%= order.status %></td>
               <td><% if order.paid? || order.ordered? %>
                 <%= link_to("cancel order", admin_order_path(order, status: "cancelled"), method: :patch, class: "order#{order.id}") %><br>

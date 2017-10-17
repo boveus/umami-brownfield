@@ -23,8 +23,8 @@
       <td><%= link_to item.name.titleize, item_path(item) %></td>
       <td><%= truncate(item.description) %></td>
       <td><%= @order.get_quantity(item.id) %></td>
-      <td><%= item.price_for_item_at_order %></td>
-      <td><%= @order.item_total_when_ordered(item.id) %></td>
+      <td><%= number_to_currency(item.price_for_item_at_order) %></td>
+      <td><%= number_to_currency(@order.item_total_when_ordered(item.id)) %></td>
     </tr>
   </tbody>
   <% end %>
@@ -38,7 +38,7 @@
       <td><% if @order.completed? || @order.cancelled? %>
       <%= @order.updated_at.strftime('%a %b %e %Y %H:%M') %>
     <% end %></td>
-      <td>Order Total: <%= @order.total_price_when_ordered %></td>
+      <td>Order Total: <%= number_to_currency(@order.total_price_when_ordered) %></td>
     </tr>
   </tbody>
 </table>

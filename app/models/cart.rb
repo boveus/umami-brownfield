@@ -26,11 +26,11 @@ class Cart
     total = contents.reduce(0) do |total, item|
       total += Item.find(item[0]).price * count_of(item[0])
     end
-    "$#{Money.new(total, "USD")}"
+    total / 100
   end
 
   def subtotal(item_id)
-    "$#{Money.new(Item.find(item_id).price * count_of(item_id), "USD")}"
+    (Item.find(item_id).price * count_of(item_id)) / 100
   end
 
   def remove_item(item_id)

@@ -23,8 +23,8 @@
       <td><%= link_to item.name.titleize, item_path(item) %></td>
       <td><%= truncate(item.description) %></td>
       <td><%= link_to '<i class="material-icons">remove</i>'.html_safe, cart_path(@cart, button: {item_id: item.id, do: "subtract"}), method: 'patch' %> <%= @cart.count_of(item.id) %> <%= link_to '<i class="material-icons">add</i>'.html_safe, cart_path(@cart, button: {item_id: item.id, do: "add"}), method: 'patch' %></td>
-      <td><%= item.to_money %></td>
-      <td><%= @cart.subtotal(item.id) %></td>
+      <td><%= number_to_currency(item.to_money) %></td>
+      <td><%= number_to_currency(@cart.subtotal(item.id)) %></td>
     </tr>
   </tbody>
   <% end %>
@@ -35,7 +35,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>Order Total: <%= @cart.total_cost %> </td>
+      <td>Order Total: <%= number_to_currency(@cart.total_cost) %> </td>
       <td><% if current_user %>
               <%= link_to 'Checkout', orders_path, class: "waves-effect waves-light btn", method: 'post' %>
             <% else %>
