@@ -7,16 +7,16 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   
   def self.find_or_create_from_auth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
-      user.image = auth.info.image
+    find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["name"]
+      user.image = auth["info"]["name"]
       user.address = "123 ABC St"
       user.password = 'n/a'
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.oauth_token = auth["credentials"]["token"]
+      user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"])
       user.save
     end
   end
