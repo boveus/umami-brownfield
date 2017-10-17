@@ -15,7 +15,8 @@ class Item < ApplicationRecord
   enum status: [:active, :retired]
 
   def to_money
-    "$#{Money.new(price, "USD")}"
+    price / 100
+    # "$#{Money.new(price, "USD")}"
   end
 
   def set_image
