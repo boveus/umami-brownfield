@@ -25,7 +25,10 @@ class Item < ApplicationRecord
   end
 
   def self.by_popularity
-    select('items.*, count(order_items.id) as order_items_count').joins(:order_items).group(:id).order('order_items_count DESC')
+    select('items.*, count(order_items.id) as order_items_count')
+    .joins(:order_items)
+    .group(:id)
+    .order('order_items_count DESC')
   end
 
   def price_for_item_at_order

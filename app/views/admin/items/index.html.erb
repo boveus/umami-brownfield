@@ -15,7 +15,7 @@
     <tbody>
       <td><a><%= link_to item.name, item_path(item) %></a></td>
       <td><%= image_tag item.image, width: '75px' %></td>
-      <td><%= item.price %></td>
+      <td><%= number_to_currency(item.price) %></td>
       <td><%= truncate(item.description) %></td>
       <td><%= item.status %></td>
       <td><a><%= link_to "Edit", edit_admin_item_path(item) %></a></td>
