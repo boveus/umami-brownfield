@@ -33,6 +33,6 @@ class Order < ApplicationRecord
   end
 
   def total_price_when_ordered
-    "$#{Money.new(order_items.sum(:item_price_record))}"
+    order_items.sum(:item_price_record)
   end
 end
