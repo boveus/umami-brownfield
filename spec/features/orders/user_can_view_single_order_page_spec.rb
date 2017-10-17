@@ -23,10 +23,10 @@ RSpec.feature "user can view single order" do
     expect(current_path).to eq(order_path(order))
     expect(page).to have_content(item.name)
     expect(page).to have_content(item.description)
-    expect(page).to have_content(item.to_money)
+    expect(page).to have_content("$0.05")
     expect(page).to have_content(order.status)
     expect(page).to have_content(item.description)
     expect(page).to have_content(order.created_at.strftime('%a %b %e %Y %H:%M'))
-    expect(page).to have_content("$15.00")
+    expect(page).to have_content("$0.15")
   end
 end

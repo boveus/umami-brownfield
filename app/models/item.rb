@@ -32,7 +32,7 @@ class Item < ApplicationRecord
   end
 
   def price_for_item_at_order
-    "#{Money.new(order_items.first.item_price_record)}"
+    order_items.first.item_price_record / 100
   end
 
 end

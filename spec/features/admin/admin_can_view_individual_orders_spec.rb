@@ -16,8 +16,7 @@ feature 'Admin' do
       expect(page).to have_content(order.user.name)
       expect(page).to have_content(order.user.address)
       expect(page).to have_content(order.get_quantity(order.items.first.id))
-      expect(page).to have_content(order.get_item_total(order.items.first.id))
-      expect(page).to have_content(order.items.first.to_money)
+      expect(page).to have_content("$0.05")
       expect(page).to have_content(order.status)
     end
   end

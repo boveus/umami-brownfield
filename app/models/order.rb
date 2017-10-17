@@ -29,10 +29,10 @@ class Order < ApplicationRecord
   end
 
   def item_total_when_ordered(item_id)
-    get_quantity(item_id) * order_items.find_by(item_id: item_id).item_price_record
+    get_quantity(item_id) * order_items.find_by(item_id: item_id).item_price_record / 100
   end
 
   def total_price_when_ordered
-    order_items.sum(:item_price_record)
+    order_items.sum(:item_price_record) / 100
   end
 end
