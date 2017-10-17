@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
- # root "items#index"
+ root to: "vendors#index"
+
+ resources :vendors, only: [:index, :show]
+
  resources :items,  only: [:index, :show]
  resources :tags,   only: [:index, :show]
  resources :users,  only: [:new, :create]
@@ -31,5 +34,4 @@ Rails.application.routes.draw do
  # resources :sessions, only: [:create, :destroy]
  # resource :home, only: [:show]
 
- root to: "items#index"
 end
