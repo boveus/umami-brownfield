@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   enum status: [:ordered, :paid, :cancelled, :completed]
 
   def total_price
-    "$#{Money.new(items.sum(:price))}"
+    items.sum(:price) / 100
   end
 
   def get_quantity(id)
@@ -17,7 +17,7 @@ class Order < ApplicationRecord
   end
 
   def get_item_total(item_id)
-    "$#{Money.new((get_quantity(item_id) * items.find(item_id).price))}"
+    (get_quantity(item_id) * items.find(item_id).price) / 100
   end
 
   def total_quantity
@@ -29,10 +29,10 @@ class Order < ApplicationRecord
   end
 
   def item_total_when_ordered(item_id)
-     "$#{Money.new((get_quantity(item_id) * order_items.find_by(item_id: item_id).item_price_record))}"
+    get_quantity(item_id) * order_items.find_by(item_id: item_id).item_price_record / 100
   end
 
   def total_price_when_ordered
-    "$#{Money.new(order_items.sum(:item_price_record))}"
+    order_items.sum(:item_price_record) / 100
   end
 end

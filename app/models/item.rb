@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   enum status: [:active, :retired]
 
   def to_money
-    "$#{Money.new(price, "USD")}"
+    price / 100
   end
 
   def set_image
@@ -25,11 +25,16 @@ class Item < ApplicationRecord
   end
 
   def self.by_popularity
-    select('items.*, count(order_items.id) as order_items_count').joins(:order_items).group(:id).order('order_items_count DESC')
+    select('items.*, count(order_items.id) as order_items_count')
+    .joins(:order_items)
+    .group(:id)
+    .order('order_items_count DESC')
   end
 
   def price_for_item_at_order
-    "#{Money.new(order_items.first.item_price_record)}"
+    order_items
+    .first
+    .item_price_record / 100
   end
 
 end
