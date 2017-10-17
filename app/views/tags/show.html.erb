@@ -12,7 +12,7 @@
         Sorry, this item has been retired.
         <% end %>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><%= link_to item.name.capitalize, item_path(item) %><br><%= item.to_money %></span>
+        <span class="card-title activator grey-text text-darken-4"><%= link_to item.name.capitalize, item_path(item) %><br><%= number_to_currency(item.to_money) %></span>
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4"><%= item.name %><i class="material-icons right">close</i></span>
