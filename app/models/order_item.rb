@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
   before_create :item_price_at_order
 
   def item_price_at_order
-    item_price_record = item.price
+    self.item_price_record = item.price
   end
 
 end

@@ -16,7 +16,6 @@ class Item < ApplicationRecord
 
   def to_money
     price / 100
-    # "$#{Money.new(price, "USD")}"
   end
 
   def set_image
