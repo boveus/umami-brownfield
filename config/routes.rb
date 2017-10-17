@@ -24,6 +24,7 @@ Rails.application.routes.draw do
  delete "/cart"        => "carts#destroy"
  get "/:name"          => "tags#show"
 
+ get '/auth/google_oauth2', as: :google_login
  get 'auth/:provider/callback', to: 'sessions#create'
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'

@@ -9,11 +9,11 @@
         <a class="form-input"><%= f.text_field :name, placeholder: 'Name' %></a>
 
         <a class="form-input"><%= f.password_field :password, placeholder: 'Password' %></a><br><br><br><br><br><br>
-        <button class='loginBtn loginBtn--google'><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></button><br><br>
         <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Log in") %></a>
         <% end %>
         <br>
         <%= link_to "Create Account", new_user_path, class: "waves-effect waves-light btn teal darken-4" %>
+        <button class='loginBtn loginBtn--google'><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></button><br><br>
       </div>
     </div>
   </div>
