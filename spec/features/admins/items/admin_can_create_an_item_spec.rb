@@ -10,7 +10,7 @@
 require 'rails_helper'
 
 RSpec.feature "admin can create an item" do
-  scenario "from main page" do
+  xscenario "from main page" do
     admin = create(:user, role: 1)
     visit root_path
     click_on("Login")
@@ -138,7 +138,7 @@ RSpec.feature "admin can create an item" do
     expect(page).to have_content("Description has already been taken")
   end
 
-  scenario "without image" do
+  xscenario "without image" do
     admin = create(:user, role: 1)
     visit root_path
     click_on("Login")
