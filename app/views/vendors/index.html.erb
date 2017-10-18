@@ -1,4 +1,6 @@
 <h3> Vendor List </h3>
-<% @vendors.each do |vendor| %>
-  <%= link_to vendor.name, vendor_path(vendor), class: "btn-floating fab waves-effect waves-light" %>
+<% @vendors.each_with_index do |vendor, i| %>
+<div class='vendor'>
+  <%= link_to vendor.name, vendor_items_path(vendor), class: "btn-floating fab waves-effect waves-light" %>
+</div>
 <% end %>

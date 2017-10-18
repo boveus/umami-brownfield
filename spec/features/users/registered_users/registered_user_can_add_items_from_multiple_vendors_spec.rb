@@ -4,18 +4,19 @@ feature "As an registered user" do
   scenario "user can add items from multiple vendors to the cart" do
     user1 = create(:user, role: 0)
     vendor1 = create(:vendor)
-    item1 = create(:item, user_id: vendor1.id)
+    item1 = create(:item, vendor_id: vendor1.id)
     vendor2 = create(:vendor)
-    item2 = create(:item, user_id: vendor2.id)
-    
+    item2 = create(:item, vendor_id: vendor2.id)
+
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+
     # As a registered customer
     # When I visit the root path
     visit '/'
 
     # And I click on a business
-    within(:css, "vendor_Generic") do
-      click_on "Generic_Vendor_1"
-    end
+    click_on "Generic_Vendor_1"
     # And I add items to my cart
 
     click_on("add_shopping_cart")
@@ -24,9 +25,7 @@ feature "As an registered user" do
     visit '/'
 
     # And I visit a different business
-    within(:css, "vendor_Generic") do
-      click_on "Generic_Vendor_2"
-    end
+    click_on "Generic_Vendor_2"
 
     # And I add items to my cart
     click_on("add_shopping_cart")
