@@ -8,7 +8,6 @@ describe 'as a user' do
 			mock_auth_hash
 			click_link "Sign in with Google"
 			expect(current_path).to eq('/dashboard' )
-			save_and_open_page
 		end
 	end
 end

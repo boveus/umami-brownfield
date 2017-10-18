@@ -11,8 +11,8 @@ class User < ApplicationRecord
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
-      user.email = auth["info"]["name"]
-      user.image = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.image = auth["info"]["image"]
       user.address = "123 ABC St"
       user.password = 'n/a'
       user.oauth_token = auth["credentials"]["token"]
