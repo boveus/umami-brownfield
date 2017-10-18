@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, :address, :password
   validates_uniqueness_of :name, :email
   has_many :orders
+  has_many :user_roles
+  has_many :roles, through: :user_roles
 
   enum role: [:default, :admin, :business_manager]
 
