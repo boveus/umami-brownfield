@@ -7,7 +7,7 @@ describe 'as a user' do
 			visit '/login'
 			mock_auth_hash_google
 			click_link "Sign in with Google"
-			expect(current_path).to eq('/dashboard' )
+			expect(current_path).to eq('/dashboard')
 		end
 	end
 end
