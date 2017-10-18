@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :orders, through: :order_items
 
+  belongs_to :vendor
+
   validates :name, presence: true, uniqueness: true, on: :create
   validates :name, presence: true, on: :update
   validates :description, presence: true, uniqueness: true

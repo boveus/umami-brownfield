@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "admin can view all items" do
-  scenario "from admin dashboard" do
+  xscenario "from admin dashboard" do
     admin = create(:user, role: 1)
     visit root_path
     click_on("Login")
