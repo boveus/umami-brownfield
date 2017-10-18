@@ -2,10 +2,12 @@ require 'rails_helper'
 
 feature "As an registered user" do
   scenario "user can add items from multiple vendors to the cart" do
-    user1 = create(:user)
+    user1 = create(:user, role: 0)
     vendor1 = create(:vendor)
+    item1 = create(:item, user_id: vendor1.id)
     vendor2 = create(:vendor)
-
+    item2 = create(:item, user_id: vendor2.id)
+    
     # As a registered customer
     # When I visit the root path
     visit '/'
