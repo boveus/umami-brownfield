@@ -3,6 +3,9 @@ Rails.application.routes.draw do
  root to: "vendors#index"
 
  resources :vendors, only: [:index, :show]
+ namespace :vendor, path: ':vendor', as: :vendor do
+   resources :items, only: [:index]
+ end
 
  resources :items,  only: [:index, :show]
  resources :tags,   only: [:index, :show]

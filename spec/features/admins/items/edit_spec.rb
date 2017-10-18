@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.feature "admin can go to edit an item" do
-  scenario "and update that item" do
+  xscenario "and update that item" do
     admin = create(:user, role: 1)
     visit root_path
     click_on("Login")
