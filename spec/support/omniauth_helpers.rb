@@ -16,19 +16,22 @@ module OmniauthMacros
 			  {"token"=>"ya29.GlznBK9tz0vKxye6x8RCu90dJPQtixhUKELtwLume4Zpo7sy7pvyLZd5BFGiqLve2SQPnu2inGkaLt_XMBFoSjvAq9EhEPt0O6XLYIITuma6srZAPnkEm9IorXcF_w",
 			   "expires_at"=>1508286523,
 			   "expires"=>true},
-			 }}
+			 }
   end
 	def mock_auth_hash_twitter
-	{"provider"=>"twitter",
-	 "uid"=>"825463277643763712",
-	 "info"=>
-	  {"nickname"=>"leumasredins",
-	   "name"=>"Samuel Snider",
-	   "email"=>nil,
-	   "location"=>"",
-	   "image"=>"http://pbs.twimg.com/profile_images/917449851427741697/HY62Dgp__normal.jpg",
-	   "description"=>"",
-	   "urls"=>{"Website"=>nil, "Twitter"=>"https://twitter.com/leumasredins"}},
-	 	"credentials"=>{"token"=>"825463277643763712-Ed4aIIUnO8L5qVYalperBCC7CePYMo8", "secret"=>"JRPT7A7OqETRRUv9EeMmfN3gFqgDAwZJGTTMXW68s5Cor"}}
-	}
+		OmniAuth.config.mock_auth[:twitter] =
+		{"provider"=>"twitter",
+		 "uid"=>"825463277643763712",
+		 "info"=>
+		  {"nickname"=>"leumasredins",
+		   "name"=>"Samuel Snider",
+		   "email"=>nil,
+		   "image"=>"http://pbs.twimg.com/profile_images/917449851427741697/HY62Dgp__normal.jpg",
+		   "description"=>"",
+		   "urls"=>
+			 	{"Website"=>nil, "Twitter"=>"https://twitter.com/leumasredins"}
+			},
+		 	"credentials"=>{"token"=>"825463277643763712-Ed4aIIUnO8L5qVYalperBCC7CePYMo8", "secret"=>"JRPT7A7OqETRRUv9EeMmfN3gFqgDAwZJGTTMXW68s5Cor"}
+		}
+	end
 end
