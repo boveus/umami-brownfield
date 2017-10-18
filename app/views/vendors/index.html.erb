@@ -1,14 +1,9 @@
-<%#<h3> Vendor List </h3>%>
-<%#<% @vendors.each do |vendor| %>%>
-  <%#<%= link_to vendor.name, vendor_path(vendor), class: "btn-floating fab waves-effect waves-light" %>%>
-<%#<% end %>%>
-
 <div class="row">
-<div class="col m1">
+  <!-- <div class="col m1"> -->
 </div>
 <div class="row">
   <% @vendors.each do |vendor| %>
-  <div class="col m4">
+  <div class="col m4 vendor_<%= vendor.name %>">
     <div class="card sticky-action medium" id="show-card">
       <div class="card-image waves-effect waves-block waves-light">
         <%= image_tag vendor.image, class: "activator", id: "card-image" %>
@@ -22,7 +17,7 @@
         <p><%= vendor.description %></p>
       </div>
     </div>
-      </div>
-    <% end %>
+  </div>
+  <% end %>
 
 </div>
