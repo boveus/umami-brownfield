@@ -3,9 +3,9 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, :address, :password
   validates_uniqueness_of :name, :email
   has_many :orders
-  
-  enum role: [:default, :admin]
-  
+
+  enum role: [:default, :admin, :business_manager]
+
   def self.find_or_create_from_auth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
       user.provider = auth.provider
