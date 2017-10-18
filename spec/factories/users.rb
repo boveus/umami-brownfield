@@ -7,7 +7,7 @@ FactoryGirl.define do
       "Me@#{i}"
     end
     address "MyString"
-    role 0
+    role = 0
     password "Password"
 
   factory :business_manager_user do
@@ -18,8 +18,11 @@ FactoryGirl.define do
       "Me@#{i}"
     end
     address "MyString"
-    role = Role.find_or_create_by(name: 'business_manager')
     password "Password"
+    # store FactoryGirl.create(:store)
+      after(:create) do |user|
+        user.roles << Role.find_or_create_by(name: 'business_manager')
+      end
     end
   end
 end

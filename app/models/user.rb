@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :user_roles
   has_many :roles, through: :user_roles
+  belongs_to :vendor, optional: true
 
   enum role: [:default, :admin, :business_manager]
 
