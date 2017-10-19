@@ -46,7 +46,8 @@ feature "As an registered user" do
     expect(page).to have_content("Order Status: ordered")
 
     # I see the order total
-    expect(page).to have_content("Order Total: $5.00")
+    expect(page).to have_content("$0.05")
+    expect(page).to have_content("Order Total: $0.10")
 
   end
 end
