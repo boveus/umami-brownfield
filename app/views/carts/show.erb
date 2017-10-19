@@ -1,49 +1,50 @@
 <h4>Your Cart</h4>
 
 <div class="row">
- <div class="col s12 m12">
-   <div class="card-panel transparent-white">
-<table class="bordered centered">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Item Image</th>
-      <th>Item Name</th>
-      <th>Item Description</th>
-      <th>Item Quantity</th>
-      <th>Item Price</th>
-      <th>Item Total</th>
-    </tr>
-  </thead>
-  <% @items.each do |item| %>
-  <tbody>
-    <tr>
-      <td><%= link_to "Remove", cart_path(item_id: item.id), class: "waves-effect waves-light btn",  method: 'delete' %></td>
-      <td><%= image_tag item.image, width: '75px' %></td>
-      <td><%= link_to item.name.titleize, item_path(item) %></td>
-      <td><%= truncate(item.description) %></td>
-      <td><%= link_to '<i class="material-icons">remove</i>'.html_safe, cart_path(@cart, button: {item_id: item.id, do: "subtract"}), method: 'patch' %> <%= @cart.count_of(item.id) %> <%= link_to '<i class="material-icons">add</i>'.html_safe, cart_path(@cart, button: {item_id: item.id, do: "add"}), method: 'patch' %></td>
-      <td><%= number_to_currency(item.to_money) %></td>
-      <td><%= number_to_currency(@cart.subtotal(item.id)) %></td>
-    </tr>
-  </tbody>
-  <% end %>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Order Total: <%= number_to_currency(@cart.total_cost) %> </td>
-      <td><% if current_user %>
+  <div class="col s12 m12">
+    <div class="card-panel transparent-white">
+      <table class="bordered centered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Item Image</th>
+            <th>Item Name</th>
+            <th>Item Description</th>
+            <th>Item Quantity</th>
+            <th>Item Price</th>
+            <th>Item Total</th>
+          </tr>
+        </thead>
+        <% @items.each do |item| %>
+        <tbody>
+          <tr>
+            <td><%= link_to "Remove", cart_path(item_id: item.id), class: "waves-effect waves-light btn",  method: 'delete' %></td>
+            <td><%= image_tag item.image, width: '75px' %></td>
+            <td><%= link_to item.name.titleize, item_path(item) %></td>
+            <td><%= truncate(item.description) %></td>
+            <td><%= link_to '<i class="material-icons">remove</i>'.html_safe, cart_path(@cart, button: {item_id: item.id, do: "subtract"}), method: 'patch' %> <%= @cart.count_of(item.id) %> <%= link_to '<i class="material-icons">add</i>'.html_safe, cart_path(@cart, button: {item_id: item.id, do: "add"}), method: 'patch' %></td>
+            <td><%= number_to_currency(item.to_money) %></td>
+            <td><%= number_to_currency(@cart.subtotal(item.id)) %></td>
+          </tr>
+        </tbody>
+        <% end %>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Order Total: <%= number_to_currency(@cart.total_cost) %> </td>
+            <td><% if current_user %>
               <%= link_to 'Checkout', orders_path, class: "waves-effect waves-light btn", method: 'post' %>
-            <% else %>
+              <% else %>
               <%= link_to 'Login or Create Account to Checkout', login_path %>
-            <% end %></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
+              <% end %></td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
