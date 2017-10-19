@@ -13,7 +13,7 @@ module OmniauthMacros
 			   "image"=>"https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
 			   "urls"=>{"Google"=>"https://plus.google.com/115821578552534939600"}},
 			 "credentials"=>
-			  {"token"=>"ya29.GlznBK9tz0vKxye6x8RCu90dJPQtixhUKELtwLume4Zpo7sy7pvyLZd5BFGiqLve2SQPnu2inGkaLt_XMBFoSjvAq9EhEPt0O6XLYIITuma6srZAPnkEm9IorXcF_w",
+			  {"token"=>ENV['google_token'],
 			   "expires_at"=>1508286523,
 			   "expires"=>true},
 			 }
@@ -31,7 +31,7 @@ module OmniauthMacros
 		   "urls"=>
 			 	{"Website"=>nil, "Twitter"=>"https://twitter.com/leumasredins"}
 			},
-		 	"credentials"=>{"token"=>"825463277643763712-Ed4aIIUnO8L5qVYalperBCC7CePYMo8", "secret"=>"JRPT7A7OqETRRUv9EeMmfN3gFqgDAwZJGTTMXW68s5Cor"}
+		 	"credentials"=>{"token"=>ENV["twitter_token"], "secret"=>ENV['twitter_secret']}
 		}
 	end
   def mock_auth_hash_facebook
@@ -44,7 +44,7 @@ module OmniauthMacros
        "image"=>"http://graph.facebook.com/v2.6/10154907089822826/picture"},
        "credentials"=>
       {"token"=>
-       "EAAK0AlFTmU4BAAI8RNdZAgj4oMQY5rFEpJoWempT52jjgZC8SEcZAzeP7XABkfAhmwoaRONBoIdZCP0Oty6gMFaMjh3qJO0zpsCBndaJuwWr3lFgNNKp4C7D4bUNRDpaUVpGZBDnqjVOTcif2HXUMsH2ZB3I0BfvV3n2gmcJiatAZDZD",
+       ENV['facebook_token'],
        "expires_at"=>1513619328,
        "expires"=>true
       },
