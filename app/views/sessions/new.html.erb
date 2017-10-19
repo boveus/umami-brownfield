@@ -8,13 +8,13 @@
         <%= form_for(:user, url: login_path, method: :post) do |f| %>
         <a class="form-input"><%= f.text_field :name, placeholder: 'Name' %></a>
 
-        <a class="form-input"><%= f.password_field :password, placeholder: 'Password' %></a><br><br><br><br><br><br>
+        <a class="form-input"><%= f.password_field :password, placeholder: 'Password' %></a><br><br>
         <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Log in") %></a>
         <% end %>
         <br>
-        <%= link_to "Create Account", new_user_path, class: "waves-effect waves-light btn teal darken-4" %>
-        <button class='loginBtn loginBtn--google'><%= link_to "Sign in with Twitter", "/auth/twitter", id: "sign_in_twitter" %></button><br><br>
-        <button class='loginBtn loginBtn--google'><%= link_to "Sign in with Facebook", facebook_login_path, id: "sign_in_facebook" %></button><br><br>
+        <%= link_to "Create Account", new_user_path, class: "waves-effect waves-light btn teal darken-4" %> <br /> <br />
+        <button class='loginBtn loginBtn--twitter'><%= link_to "Sign in with Twitter", "/auth/twitter", id: "sign_in_twitter" %></button><br><br>
+        <button class='loginBtn loginBtn--facebook'><%= link_to "Sign in with Facebook", facebook_login_path, id: "sign_in_facebook" %></button><br><br>
         <button class='loginBtn loginBtn--google'><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in_google" %></button><br><br>
       </div>
     </div>
