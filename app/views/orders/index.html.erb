@@ -18,10 +18,10 @@
           </tr>
         </thead>
 
-        <% @orders do |order| %>
-        <tbody>
+        <% @orders.each do |order| %>
+        <tbody class="order">
           <tr>
-            <td><a><%= link_to order.created_at.strftime('%a %b %e %Y %H:%M'), order_path(order) %></a></td>
+            <td><a><%= link_to order.created_at.strftime('%a %b %e %Y %H:%M'), order_path(order), class: "order_date" %></a></td>
             <td><%= order.total_quantity %></td>
             <td><%= number_to_currency(order.total_price_when_ordered) %></td>
             <td><%= order.status %></td>

@@ -16,7 +16,7 @@ feature "As an registered user" do
     visit '/'
 
     # And I click on a business
-    click_on "Generic_Vendor_1"
+    click_on "Generic Vendor 1"
     # And I add items to my cart
 
     click_on("add_shopping_cart")
@@ -25,7 +25,7 @@ feature "As an registered user" do
     visit '/'
 
     # And I visit a different business
-    click_on "Generic_Vendor_2"
+    click_on "Generic Vendor 2"
 
     # And I add items to my cart
     click_on("add_shopping_cart")
@@ -40,7 +40,7 @@ feature "As an registered user" do
     expect(page).to have_css(".order", count: 1)
 
     # I see a list of the items that were purchased
-    click_on(class: 'order')
+    click_on(class: 'order_date')
 
     # I see order status as ordered
     expect(page).to have_content("Order Status: ordered")
