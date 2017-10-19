@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:dashboard]
 
   def dashboard
-    if current_user.business_admin?
+    if current_user.business_manager?
       @vendor = current_user.vendor
       render :business_manager_dashboard
     else

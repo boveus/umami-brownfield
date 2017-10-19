@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   enum role: [:default, :admin, :business_manager]
 
-  def business_admin?
+  def business_manager?
     roles.exists?(name: "business_manager")
   end
 
