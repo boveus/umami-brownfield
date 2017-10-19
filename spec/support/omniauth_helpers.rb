@@ -35,6 +35,20 @@ module OmniauthMacros
 		}
 	end
   def mock_auth_hash_facebook
-		OmniAuth.config.mock_auth[:facebook]
+		OmniAuth.config.mock_auth[:facebook] =
+    {"provider"=>"facebook",
+     "uid"=>"10154907089822826",
+     "info"=>
+      {"email"=>"sam_redins@yahoo.com",
+       "name"=>"Sam Snider",
+       "image"=>"http://graph.facebook.com/v2.6/10154907089822826/picture"},
+       "credentials"=>
+      {"token"=>
+       "EAAK0AlFTmU4BAAI8RNdZAgj4oMQY5rFEpJoWempT52jjgZC8SEcZAzeP7XABkfAhmwoaRONBoIdZCP0Oty6gMFaMjh3qJO0zpsCBndaJuwWr3lFgNNKp4C7D4bUNRDpaUVpGZBDnqjVOTcif2HXUMsH2ZB3I0BfvV3n2gmcJiatAZDZD",
+       "expires_at"=>1513619328,
+       "expires"=>true
+      },
+    }
+
   end
 end
