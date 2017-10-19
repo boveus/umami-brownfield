@@ -7,10 +7,10 @@ feature "user can see a list of vendors at root" do
 
     visit root_path
 
-    expect(page).to have_link("Generic_Vendor_1")
-    expect(page).to have_link("Generic_Vendor_2")
-    expect(page).to have_link("Generic_Vendor_3")
-    expect(page).to have_link("Generic_Vendor_4")
-    expect(page).to have_link("Generic_Vendor_5")
+    expect(page).to have_link(Vendor.first.name)
+    expect(page).to have_link(Vendor.second.name)
+    expect(page).to have_link(Vendor.third.name)
+    expect(page).to have_link(Vendor.fourth.name)
+    expect(page).to have_link(Vendor.fifth.name)
     end
   end
