@@ -1,19 +1,37 @@
-# As a guest user
-# When I visit "/login"
-# And I click "Forgot my Password"
-# Then I should be on '/password-reset'
-# 
-# When I fill in `Email` with "josh@example.com"
-# And I click `Submit`
-# Then I should be redirected to "/password-confirmation"
-# And I should see instructions to enter my confirmation code
-# And I should have received a text message with a confirmation code
-# 
-# When I enter the confirmation code
-# And I fill in `Password` with `password`
-# And I fill in `Password Confirmation` with `password`
-# And I click "Submit"
-# Then I should be redirected to "/dashboard"
-# And I should be logged in
-# And my old password should no longer work for logging in
-# And my new password should work after logging out and logging back in
+describe "as a guest user" do
+	describe "when I visit login page" do
+		it "I can click 'forgot my password' and reset it through two factor authentication" do
+			user = create(:user)
+			old_pass = user.password
+			new_pass = "newpass"
+			visit '/login'
+			click_on "Forgot my password"
+			expect(current_path).to eq('/password-reset')
+			
+			fill_in 'Email', with: "josh@exaple.com"
+			click_on 'Submit'
+			
+			expect(current_path).to eq('/password-confirmation')
+			expect(page).to have_css('.instructions')
+			fill_in "Confirmation Code", with: 12345
+			fill_in 'Password', with: "#{new_pass}"
+			fill_in 'Password Confirmation', with: "#{new_pass}"
+			click_on "Submit"
+			
+			expect(current_path).to eq('/dashboard')
+			expect(current_user).to eq(user)
+			click_on "Logout"
+			
+			expect(current_path).to eq(root_path)
+			visit '/login'
+			fill_in 'user[name]', with: "JustJoshin"
+			fill_in 'user[password]', with: "#{old_pass}"
+			expect(current_path).to eq('/login')
+			
+			visit '/login'
+			fill_in 'user[name]', with: "JustJoshin"
+			fill_in 'user[password]', with: "#{new_pass}"
+			expect(current_path).to eq('/dashboard')
+		end
+	end
+end
