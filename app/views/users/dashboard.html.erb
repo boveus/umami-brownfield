@@ -13,6 +13,7 @@
   </div>
 
   <div class="col m9 left-floater">
+    <%= render "shared/#{current_user.top_level_role}" %>
     <div align="center">Popular Items:</div>
     <div class="carousel">
       <% @popular_items.each do |item| %>

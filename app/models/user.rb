@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   enum role: [:default, :admin, :business_manager]
 
+  def top_level_role
+    roles.where(permission_level: roles.select('MAX(permission_level)')).first
+  end
+
   def business_manager?
     roles.exists?(name: "business_manager")
   end
