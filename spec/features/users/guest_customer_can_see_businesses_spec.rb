@@ -18,4 +18,8 @@ RSpec.feature "A a guest user(customer)" do
 
     expect(current_path).to eq("/#{vendor.slug}/items") 
   end
+
+  scenario "can add items from multiple businesses into a single cart" do
+
+  end
 end
