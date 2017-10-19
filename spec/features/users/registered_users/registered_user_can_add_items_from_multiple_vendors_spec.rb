@@ -12,11 +12,12 @@ feature "As an registered user" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
     visit '/'
-    click_on "Generic Vendor 1"
+
+    click_on vendor1.name.titleize
     click_on("add_shopping_cart")
 
     visit '/'
-    click_on "Generic Vendor 2"
+    click_on vendor2.name.titleize
     click_on("add_shopping_cart")
 
     click_on("shopping_cart")
