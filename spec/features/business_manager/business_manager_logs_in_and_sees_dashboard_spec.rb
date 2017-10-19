@@ -5,7 +5,7 @@ feature "business manager logs in" do
     user = create(:user)
     user.roles << Role.create(name: "business_manager")
     user_vendor = create(:vendor)
-    user_vendor.users << user
+    user.update(vendor: user_vendor)
     vendor = create_list(:vendor, 5)
 
 
@@ -16,6 +16,7 @@ feature "business manager logs in" do
     fill_in "user[password]", with: "Password"
     click_on("Log in")
 
+    save_and_open_page
     expect(page).to have_link(user_vendor.name)
     expect(page).to_not have_link(Vendor.second.name)
     expect(page).to_not have_link(Vendor.third.name)
