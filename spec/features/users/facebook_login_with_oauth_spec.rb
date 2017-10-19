@@ -7,7 +7,6 @@ describe 'as a user' do
 			mock_auth_hash_facebook
 			click_link "Sign in with Facebook"
 			expect(current_path).to eq('/dashboard')
-		
 		end
 	end
 end

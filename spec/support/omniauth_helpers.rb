@@ -34,4 +34,7 @@ module OmniauthMacros
 		 	"credentials"=>{"token"=>"825463277643763712-Ed4aIIUnO8L5qVYalperBCC7CePYMo8", "secret"=>"JRPT7A7OqETRRUv9EeMmfN3gFqgDAwZJGTTMXW68s5Cor"}
 		}
 	end
+  def mock_auth_hash_facebook
+		OmniAuth.config.mock_auth[:facebook]
+  end
 end
