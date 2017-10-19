@@ -10,7 +10,7 @@ class User < ApplicationRecord
   enum role: [:default, :admin, :business_manager]
 
   def business_admin?
-    roles.exists?(name: "business_admin")
+    roles.exists?(name: "business_manager")
   end
 
   def self.find_or_create_from_auth(auth)

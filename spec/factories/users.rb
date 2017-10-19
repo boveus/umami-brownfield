@@ -19,10 +19,6 @@ FactoryGirl.define do
     end
     address "MyString"
     password "Password"
-    # store FactoryGirl.create(:store)
-      after(:create) do |user|
-        user.roles << Role.find_or_create_by(name: 'business_manager')
-      end
     end
   end
 end
