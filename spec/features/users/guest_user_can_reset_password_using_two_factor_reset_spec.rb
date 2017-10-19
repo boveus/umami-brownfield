@@ -1,6 +1,6 @@
-describe "as a guest user" do
-	describe "when I visit login page" do
-		it "I can click 'forgot my password' and reset it through two factor authentication" do
+xdescribe "as a guest user" do
+	xdescribe "when I visit login page" do
+		xit "I can click 'forgot my password' and reset it through two factor authentication" do
 			user = create(:user)
 			old_pass = user.password
 			new_pass = "newpass"
