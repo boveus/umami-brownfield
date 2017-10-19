@@ -11,13 +11,18 @@ class User < ApplicationRecord
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
-      user.email = auth["info"]["email"]
+      if auth["info"]["email"]
+        user.email = auth["info"]["email"]
+      else
+        user.email = "fake@twitter.com" 
+      end
       user.image = auth["info"]["image"]
       user.address = "123 ABC St"
       user.password = 'n/a'
       user.oauth_token = auth["credentials"]["token"]
       user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"]) if auth["credentials"]["expires_at"]
       user.save
+      binding.pry
     end
   end
 end
