@@ -15,11 +15,7 @@ feature "business manager logs in" do
     fill_in "user[name]", with: user.name
     fill_in "user[password]", with: "Password"
     click_on("Log in")
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> master
     expect(page).to have_link(user_vendor.name)
     expect(page).to_not have_link(Vendor.second.name)
     expect(page).to_not have_link(Vendor.third.name)
