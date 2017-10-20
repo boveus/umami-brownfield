@@ -10,12 +10,12 @@ class PermissionsService
     if @user.business_manager?
         business_manager_permissions
     else
-      return false
+      return true
     end
   end
 
   def default_routes
-    return true if @controller == 'password'
+    return true if @controller == 'password' && @action == (%w(index show))
     return true if @controller == 'items' && @action == (%w(index show))
     return true if @controller == 'tags' && @action == (%w(index show))
     return true if @controller == 'vendors' && @action == (%w(index show))
