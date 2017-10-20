@@ -3,7 +3,7 @@ class PasswordController < ApplicationController
   end
   
   def show
-    user = User.find_by(params["user"]["email"])
+    user = User.find_by(email: params["user"]["email"])
   end
 
 end
