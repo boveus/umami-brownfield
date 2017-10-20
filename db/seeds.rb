@@ -12,10 +12,22 @@ Tag.destroy_all
 
 items = CSV.foreach "./db/items.csv", headers: true, header_converters: :symbol
 
+
+#create vendors
+20.times do
+  VendorCreator.new(Faker::Company.unique.name, Faker::Company.logo, Faker::Lorem.paragraph(1)).execute
+end
+
 items.each do |row|
   row = row.to_h
   row[:status] = row[:status].to_i
-  Item.create!(row)
+  item = Item.new(row)
+  item.vendor_id = Vendor.all.sample.id
+  item.save
+end
+
+460.times do
+  Item.create!(price: rand(500..1000), image: (Faker::Placeholdit.image), name: (Faker::Commerce.product_name + rand(1..1000).to_s), description: Faker::Lorem.paragraph(1), vendor_id: Vendor.all.sample.id)
 end
 
  Tag.create!(name: "Infused")
@@ -27,6 +39,7 @@ end
  Tag.create!(name: "Fine")
  Tag.create!(name: "accessories")
  Tag.create!(name: "salt")
+
  20.times do
   Tag.create!(name: Faker::Address.unique.country)
  end
