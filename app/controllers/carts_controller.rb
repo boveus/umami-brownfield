@@ -11,8 +11,11 @@ class CartsController < ApplicationController
     @cart.add_item(item.id)
     session[:cart] = @cart.contents
 
+    vendor = item.vendor
+    params[:vendor_id] = vendor.id
+
     flash[:notice] = "You now have #{pluralize(@cart.count_of(item.id), item.name)}."
-    redirect_to items_path
+    redirect_to vendor_items_path(vendor)
   end
 
   def update
