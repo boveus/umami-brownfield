@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User adds items to cart" do
+xfeature "User adds items to cart" do
   context "and visits cart path" do
     scenario "and increases the quantity" do
       item1 = create(:item)

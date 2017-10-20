@@ -1,4 +1,4 @@
-feature "Visitor adds items to cart" do
+xfeature "Visitor adds items to cart" do
   context "clicks on remove item" do
     scenario "item is removed from cart" do
       item1 = create(:item)
