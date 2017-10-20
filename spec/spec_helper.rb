@@ -1,4 +1,4 @@
-require 'support/omniauth_helpers'
+require 'support/omniauth_macros'
 
 RSpec.configure do |config|
   config.include(OmniauthMacros)
