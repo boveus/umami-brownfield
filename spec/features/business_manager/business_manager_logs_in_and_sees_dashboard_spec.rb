@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "business manager logs in" do
   it "and it redirects them to their dashboard and only shows their business" do
     user = create(:user)
-    user.roles << Role.create(name: "business_manager")
+    user.roles << Role.create(name: "business_manager", permission_level: 3)
     user_vendor = create(:vendor)
     user.update(vendor: user_vendor)
     vendor = create_list(:vendor, 5)

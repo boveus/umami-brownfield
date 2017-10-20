@@ -18,7 +18,8 @@ RSpec.feature "admin can create an item" do
     fill_in "user[password]", with: "Password"
     click_on("Log in")
     tag = create(:tag)
-    item = build(:item)
+    vendor = create(:vendor)
+    item = create(:item, vendor: vendor)
 
     expect(page).to have_content("Create New Item")
 
@@ -77,7 +78,7 @@ RSpec.feature "admin can create an item" do
     expect(current_path).to eq(admin_items_path)
     expect(page).to have_content("Name can't be blank")
   end
-  
+
   scenario "without unique name" do
     admin = create(:user, role: 1)
     visit root_path
