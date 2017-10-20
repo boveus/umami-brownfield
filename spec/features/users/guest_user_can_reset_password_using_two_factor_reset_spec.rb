@@ -9,7 +9,6 @@ describe "as a guest user" do
 			visit '/login'
 			click_on "Forgot my password"
 			expect(current_path).to eq('/password-reset')
-		  save_and_open_page
 			fill_in 'Email', with: "josh@exaple.com"
 			click_on 'Submit'
 			

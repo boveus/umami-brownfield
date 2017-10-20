@@ -25,7 +25,6 @@ Rails.application.routes.draw do
  post "/cart"          => "carts#create"
  patch "/cart"         => "carts#update"
  delete "/cart"        => "carts#destroy"
- get "/:name"          => "tags#show"
  
  
 
@@ -35,12 +34,14 @@ Rails.application.routes.draw do
  get 'auth/:provider/callback', to: 'sessions#create'
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'
- get '/password-reset', to: 'password#index'
+ get '/password-reset', as: 'password_reset',  to: 'password#index'
+ get '/password-confirmation', to: 'password#show'
 
  namespace :vendor, path: ':vendor', as: :vendor do
    resources :items, only: [:index]
  end
 
+ get "/:name"          => "tags#show"
 
  # resources :sessions, only: [:create, :destroy]
  # resource :home, only: [:show]
