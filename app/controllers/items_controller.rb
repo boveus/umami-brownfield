@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
+    binding.pry
     @items = Item.all
     @tags = Tag.all
   end
