@@ -29,6 +29,8 @@ Rails.application.routes.draw do
  patch "/cart"         => "carts#update"
  delete "/cart"        => "carts#destroy"
  get "/:name"          => "tags#show"
+ 
+ 
 
  get '/auth/google_oauth2', as: :google_login
  get '/auth/twitter', as: :twitter_login
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
  get 'auth/:provider/callback', to: 'sessions#create'
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'
+ get '/password-reset', to: 'password#index'
 
  # resources :sessions, only: [:create, :destroy]
  # resource :home, only: [:show]

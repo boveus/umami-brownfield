@@ -1,13 +1,15 @@
-xdescribe "as a guest user" do
-	xdescribe "when I visit login page" do
-		xit "I can click 'forgot my password' and reset it through two factor authentication" do
-			user = create(:user)
+require 'rails_helper'
+
+describe "as a guest user" do
+	describe "when I visit login page" do
+		it "I can click 'forgot my password' and reset it through two factor authentication" do
+			user = create(:user, email: "josh@example.com")
 			old_pass = user.password
 			new_pass = "newpass"
 			visit '/login'
 			click_on "Forgot my password"
 			expect(current_path).to eq('/password-reset')
-			
+		  save_and_open_page
 			fill_in 'Email', with: "josh@exaple.com"
 			click_on 'Submit'
 			
