@@ -1,6 +1,0 @@
-<div class="row">
-  <%= form_for(:user, url: user_password_reset_path, method: :get) do |f| %>
-  <a class="form-input"><%= f.text_field :email, placeholder: 'Email' %></a>
-  <%= f.submit("Submit") %>
-  <% end %>
-</div>

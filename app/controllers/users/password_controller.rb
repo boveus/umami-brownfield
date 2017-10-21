@@ -1,5 +1,5 @@
 module Users
-  class Users::PasswordsController < ApplicationController
+  class PasswordController < ApplicationController
    before_action :authenticated?, only: [:edit, :update]
  
    def edit
@@ -7,8 +7,13 @@ module Users
    end
  
    def reset
-     ConfirmationSender.send_confirmation_to(current_user)
-     redirect_to new_confirmation_path
+     binding.pry
+     if current_user
+       ConfirmationSender.send_confirmation_to(current_user)
+     elsif params
+       ConfirmationSender.send_confirmation_to(User.find(params["format"]))
+       redirect_to new_confirmation_path
+     end
    end
  
    def update
