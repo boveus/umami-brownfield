@@ -46,5 +46,8 @@ RSpec.feature "A a guest user(customer)" do
     expect(page).to have_link('Login or Create Account to Checkout')
     expect(page).to have_content("0.05")
     expect(page).to have_content("Order Total: $0.15")
+    expect(page).to have_link(vendors[0].name)
+    expect(page).to have_link(vendors[1].name)
+    expect(page).to have_link(vendors[2].name)
   end
 end
