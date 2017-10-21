@@ -28,6 +28,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(current_user.id)
+  end
+
+  def edit
+    @user = User.find(current_user.id)
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update!(user_params)
+      flash[:notice] = "#{@user.name} profile information updated."
+      redirect_to user_path(@user)
+    else
+      @user = User.find(current_user.id)
+      render edit_user_path(@user)
+    end
+  end
+
   private
 
   def user_params

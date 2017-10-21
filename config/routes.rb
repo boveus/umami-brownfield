@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
  resources :items,  only: [:index, :show]
  resources :tags,   only: [:index, :show]
- resources :users,  only: [:new, :create]
+ resources :users,  only: [:new, :create, :show, :edit, :update]
  resources :orders, only: [:index, :show, :create]
 
  namespace :admin do
