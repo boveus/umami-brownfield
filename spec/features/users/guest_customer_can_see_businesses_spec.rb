@@ -40,11 +40,10 @@ RSpec.feature "A a guest user(customer)" do
     click_on vendors[2].name.titleize
     click_on("add_shopping_cart", match: :first)
 
-    expect(page).to have_css(".order", count: 1)
+    click_on("shopping_cart")
 
-    click_on(class: 'order_date')
-    
-    expect(page).to have_content("Order Status: ordered")
+    expect(page).to have_css("tbody tr", count: 4)
+    expect(page).to have_link('Login or Create Account to Checkout')
     expect(page).to have_content("0.05")
     expect(page).to have_content("Order Total: $0.15")
   end
