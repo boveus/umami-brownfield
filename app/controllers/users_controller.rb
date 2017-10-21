@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(current_user.id)
   end
 
   def edit
@@ -41,12 +41,10 @@ class UsersController < ApplicationController
     if @user.update!(user_params)
       flash[:notice] = "#{@user.name} profile information updated."
       redirect_to user_path(@user)
-      # binding.pry
     else
       @user = User.find(current_user.id)
       render edit_user_path(@user)
     end
-
   end
 
   private

@@ -22,17 +22,14 @@ feature "As a registered user" do
 
     click_on "Edit Info"
 
-    fill_in "user[name]", with: "Randy BoBander"
+    fill_in "user[name]", with: "Randy BoBanders"
     fill_in "user[email]", with: "Randy@DirtyBandaids.com"
     fill_in "user[address]", with: "123 Dirty Lane, Denver CO 80233"
     fill_in "user[password]", with: "UndustedCoffeeTable"
     click_on("Update")
 
-# save_and_open_page
     expect(page).to have_content("Username: Randy BoBanders")
     expect(page).to have_content("Email: Randy@DirtyBandaids.com")
     expect(page).to have_content("Address: 123 Dirty Lane, Denver CO 80233")
-    expect(user1.password).to_not eq(user_password_hash)
-
   end
 end
