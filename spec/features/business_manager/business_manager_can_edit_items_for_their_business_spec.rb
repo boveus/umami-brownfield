@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "business manager logs in" do
-  scenario "and they click on edit an item"
+  context "and they click on edit an item" do
   it "takes them to an item edit page and lets them update items for their business" do
     user = create(:user)
     user.roles << Role.create(name: "business_manager", permission_level: 3)
@@ -29,6 +29,7 @@ feature "business manager logs in" do
 
     click_on "Update Item"
 
-    expect(current_path).to eq(edit_admin_item_path)
+    expect(current_path).to eq(item_path(user_vendor.items.first))
     end
   end
+end

@@ -1,6 +1,6 @@
 <h1>Edit</h1>
 
-<%= form_for([:admin, @item]) do |f| %>
+<%= form_for([@vendor, @item]) do |f| %>
   <% if @item.errors.any? %>
   <h3><%= pluralize(@item.errors.count, "error") %> prohibited this record from being saved:</h3>
   <ul>
