@@ -19,17 +19,15 @@ feature "business manager logs in" do
 
     click_on "Generic_Vendor_1"
 
-    click_on("Edit Items")
+    click_on "View Items"
 
-    expect(page).to have_content(user_vendor.items.first.name)
-    expect(page).to have_content(user_vendor.items.first.price)
-    expect(page).to have_content(user_vendor.items.first.description)
+    click_on "edit_item_1"
 
     fill_in "item[name]", with: "New_name"
     fill_in "item[price]", with: "3.50"
     fill_in "item[description]", with: "This item costs three fifty"
 
-    click_on "update item"
+    click_on "Update Item"
 
     expect(current_path).to eq(edit_admin_item_path)
     end

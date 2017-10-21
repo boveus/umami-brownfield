@@ -3,6 +3,10 @@ class Vendor::ItemsController < ApplicationController
     @vendor = Vendor.find_by(slug: params[:vendor]) || Vendor.find(params[:vendor])
     @items = @vendor.items
     @tags = Tag.all
-    render "items/index"
+  end
+
+  def edit
+     @item = Item.find(params[:id])
+     @tags = Tag.all
   end
 end
