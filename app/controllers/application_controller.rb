@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :require_user,
                 :current_user,
                 :find_quantity,
-                :current_admin?
+                :current_admin?,
 
   def require_user
     unless current_user

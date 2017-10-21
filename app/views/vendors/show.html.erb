@@ -1,1 +1,5 @@
+<% if current_user %>
 <%= render "shared/vendors/show/#{current_user.top_level_role}" %>
+<% else %>
+<%= render "shared/vendors/show/default" %>
+<% end %>
