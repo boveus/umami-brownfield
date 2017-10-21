@@ -34,9 +34,11 @@ Rails.application.routes.draw do
  get 'auth/:provider/callback', to: 'sessions#create'
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'
- get '/password-reset',  to: 'password#edit'
+ resources :confirmations, only: [:new, :create]
  namespace :users, path: ":username" do
    get '/password-confirmation', to: 'password#reset', as: :password_reset
+   patch '/password-confirmation/update', to: 'password#update', as: :password_patch
+   get '/password-reset',  to: 'password#edit', as: :password_edit
  end
 
  namespace :vendor, path: ':vendor', as: :vendor do
