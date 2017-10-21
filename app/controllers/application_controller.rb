@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
 
   def authorize!
   permission = PermissionsService.new(current_user, params[:controller], params[:action])
-  if permission.authorized?
-  else
-    raise ActionController::RoutingError.new('Not Found')
-  end
+    if permission.authorized?
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 end

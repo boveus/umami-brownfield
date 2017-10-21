@@ -21,7 +21,7 @@ class Vendor::ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   def item_params
     params.require(:item).permit(:name, :price, :image, :description, tag_ids: [])
   end
