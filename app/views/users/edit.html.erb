@@ -6,7 +6,7 @@
     <div class="card grey darken-1 large">
       <div class="card-content white-text">
         <span class="card-title">Create An Account</span>
-        <%= form_for(@user) do |f| %>
+        <%= form_for(current_user) do |f| %>
         <a><%= f.text_field :name, placeholder: 'Name' %></a>
 
         <a><%= f.text_field :email, placeholder: 'Email' %></a>
