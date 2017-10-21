@@ -1,36 +1,36 @@
 <div class="row">
-<div class="col m1">
-</div>
-<h4 class="col m10">Our Curated Selecton of Salt and Salt Accessories</h4>
-<br><br><br><p>Filter by Tag:</p>
-<%#<% @tags.each do |tag| %>%>
-<%#<div class="chip">%>
-  <%#<a href="/<%= tag.name %>"><%= tag.name.titleize %></a>%>
-  <%#<i class="close material-icons"></i>%>
-<%#</div>%>
-<%#<% end %>%>
-<div class="row">
-  <% @items.each do |item| %>
-  <div class="col m4">
-    <div class="card sticky-action medium" id="show-card">
-      <div class="card-image waves-effect waves-block waves-light">
-        <%= image_tag item.image, class: "activator", id: "card-image" %>
-      </div>
-      <% if item.active? %>
+  <h4 class="center_text">All Items</h4>
+  <hr>
+  <h5>Filter by Tag:</h5>
+  <% @tags.each do |tag| %>
+  <div class="chip center_text">
+    <a href="/<%= tag.name %>"><%= tag.name.titleize %></a>
+    <i class="close material-icons"></i>
+  </div>
+  <% end %>
+  <hr>
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col m4">
+      <div class="card sticky-action medium" id="show-card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <%= image_tag item.image, class: "activator", id: "card-image" %>
+        </div>
+        <% if item.active? %>
         <%= link_to '<i class="material-icons" >add_shopping_cart</i>'.html_safe, cart_path(item_id: item.id), class: "btn-floating fab waves-effect waves-light right red add-cart", method: 'post' %>
         <% else %>
         Sorry, this item has been retired
         <% end %>
 
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><%= link_to item.name.titleize, item_path(item) %><br><%= number_to_currency(item.to_money) %></span>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><%= item.name %><i class="material-icons right">close</i></span>
-        <p><%= item.description %></p>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><%= link_to item.name.titleize, item_path(item) %><br><%= number_to_currency(item.to_money) %></span>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><%= item.name %><i class="material-icons right">close</i></span>
+          <p><%= item.description %></p>
+        </div>
       </div>
     </div>
-      </div>
     <% end %>
-
+  </div>
 </div>

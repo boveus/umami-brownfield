@@ -3,9 +3,6 @@ Rails.application.routes.draw do
  root to: "vendors#index"
 
  resources :vendors, only: [:index, :show]
- namespace :vendor, path: ':vendor', as: :vendor do
-   resources :items, only: [:index]
- end
 
  resources :items,  only: [:index, :show]
  resources :tags,   only: [:index, :show]
@@ -30,9 +27,17 @@ Rails.application.routes.draw do
  delete "/cart"        => "carts#destroy"
  get "/:name"          => "tags#show"
 
+ get '/auth/google_oauth2', as: :google_login
+ get '/auth/twitter', as: :twitter_login
+ get '/auth/facebook', as: :facebook_login
  get 'auth/:provider/callback', to: 'sessions#create'
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'
+
+ namespace :vendor, path: ':vendor', as: :vendor do
+   resources :items, only: [:index]
+ end
+
 
  # resources :sessions, only: [:create, :destroy]
  # resource :home, only: [:show]

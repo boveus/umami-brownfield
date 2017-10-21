@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:dashboard]
 
   def dashboard
-    @popular_items = Item.by_popularity.limit(10)
+    if current_user.business_manager?
+      @vendor = current_user.vendor
+      render :business_manager_dashboard
+    else
+      @popular_items = Item.by_popularity.limit(10)
+    end
   end
 
   def new

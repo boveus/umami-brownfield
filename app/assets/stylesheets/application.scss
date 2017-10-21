@@ -150,3 +150,36 @@ label {
 .loginBtn--google:focus {
   background: #E74B37;
 }
+
+.loginBtn--facebook {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #3B5998;
+}
+.loginBtn--facebook:before {
+  background: url('http://www.priceisright.com/wp-content/themes/twentytwelve/images/icon_fb_small.png') 6px 6px no-repeat;
+}
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background: #5c95f2;
+}
+
+.loginBtn--twitter {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #1DA1F2;
+}
+.loginBtn--twitter:before {
+  background: url('https://s.gr-assets.com/assets/icons/twitter_icon-2289166aec1c47ee68cfb5716142273f.jpg') 6px 6px no-repeat;
+}
+.loginBtn--twitter:hover,
+.loginBtn--twitter:focus {
+  background: #66ccff;
+}
+
+.all_content_frame {
+  margin-left: 8%;
+  margin-right: 8%;
+}
+
+.center_text {
+  text-align: center;
+}

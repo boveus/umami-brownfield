@@ -3,20 +3,35 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, :address, :password
   validates_uniqueness_of :name, :email
   has_many :orders
-  
-  enum role: [:default, :admin]
-  
+  has_many :user_roles
+  has_many :roles, through: :user_roles
+  belongs_to :vendor, optional: true
+
+  enum role: [:default, :admin, :business_manager]
+
+  def top_level_role
+    roles.where(permission_level: roles.select('MAX(permission_level)')).first
+  end
+
+  def business_manager?
+    roles.exists?(name: "business_manager")
+  end
+
   def self.find_or_create_from_auth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
-      user.image = auth.info.image
+    find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.name = auth["info"]["name"]
+      if auth["info"]["email"]
+        user.email = auth["info"]["email"]
+      else
+        user.email = "fake@twitter.com" 
+      end
+      user.image = auth["info"]["image"]
       user.address = "123 ABC St"
       user.password = 'n/a'
-      user.oauth_token = auth.credentials.token
-      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.oauth_token = auth["credentials"]["token"]
+      user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"]) if auth["credentials"]["expires_at"]
       user.save
     end
   end
