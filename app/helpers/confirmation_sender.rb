@@ -1,8 +1,8 @@
 class ConfirmationSender
   def self.send_confirmation_to(user)
-    binding.pry
     verification_code = CodeGenerator.generate
-    user.update(verification_code: verification_code)
+    user.password = "not sure"
+    user.update(verification_code: verification_code, phone_number: "3039296066")
     MessageSender.send_code(user.phone_number, verification_code)
   end
 end
