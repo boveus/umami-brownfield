@@ -1,0 +1,28 @@
+<h1>Edit</h1>
+
+<%= form_for([@vendor, @item]) do |f| %>
+  <% if @item.errors.any? %>
+  <h3><%= pluralize(@item.errors.count, "error") %> prohibited this record from being saved:</h3>
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+    <li>
+      <%= message %>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.number_field :price, placeholder: "Price" %>
+  <%= f.text_field :image, placeholder: "Image" %>
+  <%= f.text_area :description, placeholder: "Description" %>
+  <div class="row">
+  <%= hidden_field_tag "item[tag_ids][]", nil %>
+  <% @tags.each do |tag| %>
+  <div class="col m3">
+  <%= check_box_tag "item[tag_ids][]", tag.id, @item.tags.include?(tag), id: dom_id(tag) %>
+    <%= label_tag dom_id(tag), tag.name, id: 'checkbox' %><br>
+  </div>
+  <% end %>
+  </div>
+  <p><%= f.submit %></p>
+<% end %>

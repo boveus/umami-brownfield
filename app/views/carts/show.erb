@@ -7,6 +7,7 @@
         <thead>
           <tr>
             <th></th>
+            <th>Vendor Name</th>
             <th>Item Image</th>
             <th>Item Name</th>
             <th>Item Description</th>
@@ -19,6 +20,7 @@
         <tbody>
           <tr>
             <td><%= link_to "Remove", cart_path(item_id: item.id), class: "waves-effect waves-light btn",  method: 'delete' %></td>
+            <td><%= link_to item.vendor.name, vendor_items_path(item.vendor.slug)  %></td>
             <td><%= image_tag item.image, width: '75px' %></td>
             <td><%= link_to item.name.titleize, item_path(item) %></td>
             <td><%= truncate(item.description) %></td>
