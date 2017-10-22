@@ -87,7 +87,47 @@ RSpec.feature "A a guest user(customer)" do
     click_on("shopping_cart")
 
     click_on("Checkout")
-save_and_open_page
+
+    expect(current_path).to eq("/orders")
+    expect(page).to have_css("tbody tr", count: 1)
+    expect(page).to have_content("ordered")
+  end
+
+  scenario "can login before completing checkout" do
+    user = create(:user)
+    vendor = create(:vendor)
+    items = create_list(:item, 3, vendor_id: vendor.id)
+
+    visit '/'
+
+    click_on vendor.name.titleize
+    click_on("add_shopping_cart", match: :first)
+
+    click_on("shopping_cart")
+
+    expect(current_path).to eq("/cart")
+
+    click_on("Login or Create Account to Checkout")
+
+    expect(current_path).to eq("/login")
+
+    click_on("Login")
+
+    fill_in "user[name]", with: user.name
+    fill_in "user[password]", with: user.password
+save_and_open_page #NEED TO FIGURE OUT WHAT'S WRONG WITH THIS ???
+    click_on("Log In")
+
+    expect(current_path).to eq("/dashboard")
+    expect(page).to have_content("user.name")
+    expect(page).to have_content("user.email")
+
+    click_on("shopping_cart")
+
+    expect(current_path).to eq("/cart")
+
+    click_on("Checkout")
+
     expect(current_path).to eq("/orders")
     expect(page).to have_css("tbody tr", count: 1)
     expect(page).to have_content("ordered")
