@@ -117,8 +117,8 @@ RSpec.feature "A a guest user(customer)" do
     click_on("Log in")
 
     expect(current_path).to eq("/dashboard")
-    expect(page).to have_content("user.name")
-    expect(page).to have_content("user.email")
+    expect(page).to have_content(user.name)
+    expect(page).to have_content(user.email)
 
     click_on("shopping_cart")
 
