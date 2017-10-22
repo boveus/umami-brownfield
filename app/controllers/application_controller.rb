@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :require_user,
                 :current_user,
                 :find_quantity,
-                :current_admin?
+                :current_admin?,
 
   def require_user
     unless current_user
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id] && User.exists?(id: session[:user_id])
+    @user ||= User.find(session[:user_id]) if session[:user_id] #&& User.exists?(id: session[:user_id])
   end
 
   def set_cart
@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
 
   def authorize!
   permission = PermissionsService.new(current_user, params[:controller], params[:action])
-  if permission.authorized?
-  else
-    raise ActionController::RoutingError.new('Not Found')
-  end
+    if permission.authorized?
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 end
