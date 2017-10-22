@@ -111,12 +111,10 @@ RSpec.feature "A a guest user(customer)" do
 
     expect(current_path).to eq("/login")
 
-    click_on("Login")
-
     fill_in "user[name]", with: user.name
-    fill_in "user[password]", with: user.password
-save_and_open_page #NEED TO FIGURE OUT WHAT'S WRONG WITH THIS ???
-    click_on("Log In")
+    fill_in "user[password]", with: "Password" 
+
+    click_on("Log in")
 
     expect(current_path).to eq("/dashboard")
     expect(page).to have_content("user.name")
