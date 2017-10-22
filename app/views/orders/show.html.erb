@@ -9,6 +9,7 @@
       <th></th>
       <th>Item Image</th>
       <th>Item Name</th>
+      <th>Vendor</th>
       <th>Item Description</th>
       <th>Item Quantity</th>
       <th>Item Price</th>
@@ -21,6 +22,7 @@
       <td></td>
       <td><%= image_tag item.image, width: '75px' %></td>
       <td><%= link_to item.name.titleize, item_path(item) %></td>
+      <td><%= item.vendor.name %></td>
       <td><%= truncate(item.description) %></td>
       <td><%= @order.get_quantity(item.id) %></td>
       <td><%= number_to_currency(item.price_for_item_at_order) %></td>
