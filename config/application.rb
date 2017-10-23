@@ -20,6 +20,16 @@ module Umami
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
+    if defined?(Rails::Server)
+      config.after_initialize do
+        puts "Search Service Starting..."
+        # puts `bin/hello_world`
+        # puts IO.popen("bin/hello_world")
+
+        # `go run bin/basicserver/basic_server.go`
+        # IO.popen("bin/basicserver/basic_server")
+      end
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
