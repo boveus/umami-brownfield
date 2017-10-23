@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature "As an unathenticated user" do
   scenario "sees all items" do
   vendor = create(:vendor)

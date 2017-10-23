@@ -9,7 +9,6 @@ RSpec.feature "A a guest user(customer)" do
 
     visit '/'
 
-
     expect(page).to have_content(vendors[0].name)
     expect(page).to have_content(vendors[1].name)
     expect(page).to have_content(vendor.name)
@@ -79,7 +78,7 @@ RSpec.feature "A a guest user(customer)" do
 
     click_on "Create"
 
-    expect(current_path).to eq("/dashboard") 
+    expect(current_path).to eq("/dashboard")
     expect(page).to have_content("Walter")
     expect(page).to have_content("worthyadversary@thedude.com")
     expect(page).to have_content("123 Street Blvd, City, ST 12345")
@@ -112,7 +111,7 @@ RSpec.feature "A a guest user(customer)" do
     expect(current_path).to eq("/login")
 
     fill_in "user[name]", with: user.name
-    fill_in "user[password]", with: "Password" 
+    fill_in "user[password]", with: "Password"
 
     click_on("Log in")
 
