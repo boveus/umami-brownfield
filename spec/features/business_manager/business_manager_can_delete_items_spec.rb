@@ -24,11 +24,9 @@ feature "business manager logs in" do
 
     click_on "delete_item_1"
 
-    expect(page).to have_content("Please confirm that you want to delete #{item_name}")
-
     expect(page).to_not have_content("#{item_name}")
 
-    expect(current_path).to eq(item_path(user_vendor.items.first))
+    expect(current_path).to eq(vendor_items_path(user_vendor))
     end
   end
 end

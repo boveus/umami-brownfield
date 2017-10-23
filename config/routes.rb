@@ -35,7 +35,7 @@ Rails.application.routes.draw do
  get 'signout', to: 'sessions#destroy', as: 'signout'
 
  namespace :vendor, path: ':vendor', as: :vendor do
-   resources :items, only: [:index, :edit, :show, :update]
+   resources :items
  end
 
 

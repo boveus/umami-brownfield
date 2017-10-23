@@ -11,6 +11,12 @@ class Vendor::ItemsController < ApplicationController
      @tags = Tag.all
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
