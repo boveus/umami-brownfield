@@ -14,7 +14,6 @@ RSpec.feature "user can see items by category" do
     expect(page).to have_content(item1.name)
     expect(page).to have_content(item2.name)
 
-
     visit("/#{tag2.name}")
 
     expect(page).to have_content(item2.name)

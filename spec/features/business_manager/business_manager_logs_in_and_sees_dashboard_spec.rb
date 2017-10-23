@@ -7,8 +7,7 @@ feature "business manager logs in" do
     user_vendor = create(:vendor)
     user.update(vendor: user_vendor)
     vendor = create_list(:vendor, 5)
-
-
+    
     visit root_path
 
     click_on("Login")
@@ -21,5 +20,5 @@ feature "business manager logs in" do
     expect(page).to_not have_link(Vendor.third.name)
     expect(page).to_not have_link(Vendor.fourth.name)
     expect(page).to_not have_link(Vendor.fifth.name)
-    end
   end
+end

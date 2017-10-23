@@ -16,5 +16,12 @@
 //= require jquery
 //= require materialize-sprockets
 $(document).ready(function(){
-     $('.carousel').carousel();
+     $('.carousel').carousel({
+       autoplay:true,
+       dist:-20,
+       padding:20,
+       duration:200,
+
+     });
+
    });
