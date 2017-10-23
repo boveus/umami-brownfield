@@ -10,7 +10,7 @@
 
         <a class="form-input"><%= f.password_field :password, placeholder: 'Password' %></a><br><br>
         <p class='forgot-password'> <%= link_to "Forgot my password", password_reset_path %> </p>
-        <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Log in") %></a>
+        <a class="waves-effect waves-light btn teal darken-4"><%= f.submit "Log in", name: "Log in" %></a>
         <% end %>
         <br>
         <%= link_to "Create Account", new_user_path, class: "waves-effect waves-light btn teal darken-4" %> <br /> <br />
