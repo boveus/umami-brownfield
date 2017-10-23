@@ -5,10 +5,16 @@ class Vendor::ItemsController < ApplicationController
     @tags = Tag.all
   end
 
+  def new
+    @vendor = Vendor.find(params[:vendor])
+    @item   = Item.new
+    @tags   = Tag.all
+  end
+
   def edit
-     @vendor = Vendor.find(params[:vendor])
-     @item = Item.find(params[:id])
-     @tags = Tag.all
+    @vendor = Vendor.find(params[:vendor])
+    @item = Item.find(params[:id])
+    @tags = Tag.all
   end
 
   def destroy

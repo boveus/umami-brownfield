@@ -24,7 +24,7 @@ feature "business manager logs in" do
     click_on "Add New Item"
     # I should be taken to a page to fill create a new item with attributes for my business
 
-    expect(current_path).to_be "#{user_vendor.slug}/items/new"
+    expect(current_path).to eq(new_vendor_item_path(user_vendor))
 
     # After I fill in the item's attributes
     fill_in "item[name]", with: "New_name"
