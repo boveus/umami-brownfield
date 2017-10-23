@@ -44,9 +44,15 @@ Rails.application.routes.draw do
  resources :confirmations, only: [:new, :create]
 
  namespace :vendor, path: ':vendor', as: :vendor do
-   resources :items, only: [:index, :edit, :show, :update]
+   resources :items
  end
 
+ namespace :api do
+   namespace :v1 do
+    resources :vendors, only: [:index]
+   end
+ end
+ 
  get "/:name"          => "tags#show"
 
  # resources :sessions, only: [:create, :destroy]
