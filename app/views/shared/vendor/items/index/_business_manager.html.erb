@@ -31,6 +31,7 @@
           <span class="card-title grey-text text-darken-4"><%= item.name %><i class="material-icons right">close</i></span>
           <p><%= item.description %></p>
           <p><%= link_to "Edit Item", edit_vendor_item_path(@vendor, item), id: "edit_item_#{number}" %></p>
+          <p><%= link_to 'Delete Item', vendor_item_path(@vendor, item), method: :delete, id: "delete_item_#{number}", data: {confirm: "Really delete #{item.name}?" }%></p>
         </div>
       </div>
     </div>

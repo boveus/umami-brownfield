@@ -8,7 +8,6 @@ feature "As an registered user" do
     vendor2 = create(:vendor)
     item2 = create(:item, vendor_id: vendor2.id)
 
-
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
     visit '/'
@@ -30,6 +29,5 @@ feature "As an registered user" do
     expect(page).to have_content("Order Status: ordered")
     expect(page).to have_content("$0.05")
     expect(page).to have_content("Order Total: $0.10")
-
   end
 end
