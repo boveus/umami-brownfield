@@ -28,7 +28,7 @@ feature "business manager logs in" do
 
     # After I fill in the item's attributes
     fill_in "item[name]", with: "New_name"
-    fill_in "item[price]", with: "3.50"
+    fill_in "item[price]", with: "350"
     fill_in "item[description]", with: "This item costs three fifty"
 
     # And I click on 'submit'
@@ -41,9 +41,11 @@ feature "business manager logs in" do
     expect(page).to have_content("New_name")
     expect(page).to have_content("3.50")
     expect(page).to have_content("This item costs three fifty")
-
     #And when I visit user dashboard I see the item as well
+
     visit dashboard_path
+    click_on "Generic_Vendor_1"
+    click_on "View Items"
 
     expect(page).to have_content("New_name")
   end
