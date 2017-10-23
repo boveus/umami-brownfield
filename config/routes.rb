@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :users do
+    get '/password-confirmation', to: 'password#reset', as: :password_reset
+    patch '/password-confirmation/update', to: 'password#update', as: :password_patch
+    get '/password-edit',  to: 'password#edit', as: :password_edit
+  end
+  get 'password-reset', to: 'password#index'
+  post 'password-reset', to: 'password#new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  root to: "vendors#index"
 
@@ -6,7 +13,7 @@ Rails.application.routes.draw do
 
  resources :items,  only: [:index, :show]
  resources :tags,   only: [:index, :show]
- resources :users,  only: [:new, :create, :show, :edit, :update]
+ resources :users,  only: [:new, :create, :edit, :update]
  resources :orders, only: [:index, :show, :create]
 
  namespace :admin do
@@ -35,13 +42,6 @@ Rails.application.routes.draw do
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'
  resources :confirmations, only: [:new, :create]
- namespace :users do
-   get '/password-confirmation', to: 'password#reset', as: :password_reset
-   patch '/password-confirmation/update', to: 'password#update', as: :password_patch
-   get '/password-edit',  to: 'password#edit', as: :password_edit
- end
- get 'password-reset', to: 'password#index'
- post 'password-reset', to: 'password#new'
 
  namespace :vendor, path: ':vendor', as: :vendor do
    resources :items, only: [:index, :edit, :show, :update]

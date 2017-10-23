@@ -3,24 +3,28 @@ module Users
    before_action :authenticated?, only: [:edit, :update]
  
    def edit
-     @user = current_user
+     if current_user
+       @user = current_user
+     else; @user = User.find(params["format"])
+     end
    end
  
    def reset
-     binding.pry
      if current_user
        ConfirmationSender.send_confirmation_to(current_user)
      elsif params
-       ConfirmationSender.send_confirmation_to(User.find(params["format"]))
-       redirect_to new_confirmation_path
+       @user = User.find(params["format"])
+       ConfirmationSender.send_confirmation_to(@user)
+      #  redirect_to controller: '/users/password', action: ''
+       redirect_to new_confirmation_path(@user)
      end
    end
  
    def update
-     require "pry"; binding.pry
+     @user = User.find_by(name: params[:format])
      if passwords_not_empty? && passwords_equal?
-       current_user.update(password_params)
-       redirect_to users_dashboard_path(current_user.username), success: "Password Updated"
+       @user.update(password_params)
+       redirect_to root_path, success: "Password Updated"
        session[:authenticated] = false
      else
        redirect_to users_password_edit_path(current_user.username), warning: "Error, please try again."
