@@ -38,7 +38,11 @@ Rails.application.routes.draw do
    resources :items, only: [:index, :edit, :show, :update]
  end
 
-
+ namespace :api do
+   namespace :v1 do
+    resources :vendors, only: [:index]
+   end
+ end
  # resources :sessions, only: [:create, :destroy]
  # resource :home, only: [:show]
 
