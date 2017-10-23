@@ -19,6 +19,7 @@ feature "As an admin user" do
       expect(page).to have_content(order3.status)
       expect(page).to have_content("There are 3 orders with the status ordered")
     end
+    
     scenario "I can filter orders by status" do
       admin = create(:user, role: 1)
       user = create(:user)

@@ -10,7 +10,14 @@ class User < ApplicationRecord
   enum role: [:default, :admin, :business_manager]
 
   def top_level_role
-    roles.where(permission_level: roles.select('MAX(permission_level)')).first
+    top_role = roles
+    .where(permission_level: roles.select('MAX(permission_level)'))
+    .first
+    if top_role
+      return top_role.name
+    else
+      return "default"
+    end
   end
 
   def business_manager?
@@ -25,7 +32,7 @@ class User < ApplicationRecord
       if auth["info"]["email"]
         user.email = auth["info"]["email"]
       else
-        user.email = "fake@twitter.com" 
+        user.email = "fake@twitter.com"
       end
       user.image = auth["info"]["image"]
       user.address = "123 ABC St"

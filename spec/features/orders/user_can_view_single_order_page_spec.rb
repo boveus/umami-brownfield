@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "user can view single order" do
+feature "user can view single order" do
   scenario "from orders page" do
     user = create(:user)
     visit root_path
@@ -10,18 +10,23 @@ RSpec.feature "user can view single order" do
     click_on("Log in")
 
     order = create(:order, user: user)
-    item = create(:item)
-    item2 = create(:item)
+    vendor = create(:vendor)
+    item = create(:item, vendor_id: vendor.id)
+    item2 = create(:item, vendor_id: vendor.id)
     2.times do
       order.items << item
     end
+
     order.items << item2
+
     visit orders_path
 
     click_on order.created_at.strftime('%a %b %e %Y %H:%M')
 
     expect(current_path).to eq(order_path(order))
+
     expect(page).to have_content(item.name)
+    expect(page).to have_content(vendor.name)
     expect(page).to have_content(item.description)
     expect(page).to have_content("$0.05")
     expect(page).to have_content(order.status)

@@ -1,0 +1,13 @@
+<div class="card grey darken-1 large">
+  <div class="card-content white-text">
+    <span class="card-title">Edit Your Account <small>(All Fields must be completed to update profile, including password field)</small></span>
+    <hr>
+    <%= form_for(current_user) do |f| %>
+    <p>Name: <%= f.text_field :name, placeholder: 'Name' %></p>
+    <p>Email: <%= f.text_field :email, placeholder: 'e-mail' %></p>
+    <p>Address: <%= f.text_field :address, placeholder: 'Address' %></p>
+    <p>Password: <%= f.password_field :password, placeholder: 'Password' %></p>
+    <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Update") %></a>
+    <% end %>
+  </div>
+</div>

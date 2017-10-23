@@ -23,6 +23,7 @@ RSpec.feature "As an authenticated user" do
 
     expect(page).to have_content("The page you were looking for doesn't exist")
   end
+  
   scenario "cannot visit admin pages" do
     user1 = build(:user)
 
