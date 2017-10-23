@@ -1,20 +1,20 @@
-
 <div class="row">
-  <div class="col m3">
+  <div class="col m4">
     <div class="card grey darken-1 large">
       <div class="card-content white-text">
-        <div><%= current_user.name %></div>
-        <div><%= current_user.email %></div>
-        <div><%= current_user.address %></div>
-        <div><%= link_to "Your Profile", user_path(current_user)  %></div>
-        <div><%= link_to "Orders", orders_path, class: "waves-effect waves-light btn-large" %></div>
-        <div><%= link_to "Items", items_path, class: "waves-effect waves-light btn-large" %></div>
+        <h5><%= current_user.name %></h5>
+        <p><%= current_user.email %></p>
+        <p><%= current_user.address %></p>
+        <br><hr>
+        <div><%= link_to "Your Profile", user_path(current_user), class: "waves-effect waves-light btn" %></div>
+          <div><%= link_to "Orders", orders_path, class: "waves-effect waves-light btn" %></div>
+          <div><%= link_to "Items", items_path, class: "waves-effect waves-light btn" %></div>
       </div>
     </div>
   </div>
 
-  <div class="col m9 left-floater">
-    <div align="center">Popular Items:</div>
+  <div class="col m8 left-floater">
+    <h4 align="center">Popular Items:</h4>
     <div class="carousel">
       <% @popular_items.each do |item| %>
         <%= link_to item_path(item), class: "carousel-item" do %>
