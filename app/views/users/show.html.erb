@@ -6,6 +6,7 @@
       <h3>Username: <%= @user.name %></h1>
       <h4>Email: <%= @user.email %></h4>
       <h4>Address: <%= @user.address %></h4>
+      <hr>
       <div>
         <%= link_to "Edit Info", edit_user_path(@user), class: "waves-effect waves-light btn-large"  %>
         <%= link_to "Your Dashboard", dashboard_path(@user), class: "waves-effect waves-light btn-large"  %>
