@@ -9,6 +9,9 @@
   </div>
   <% end %>
   <hr>
+  <div class="add_new_item_button">
+    <%= link_to "Add New Item", new_vendor_item_path(@vendor) %>
+  </div>
   <div class="row">
     <% number = 0 %>
     <% @items.each do |item| %>
