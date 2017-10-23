@@ -41,6 +41,7 @@ gem 'jbuilder', '~> 2.5'
  gem "omniauth-google-oauth2", "~> 0.2.1"
  gem 'omniauth-twitter'
  gem 'omniauth-facebook'
+ gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
