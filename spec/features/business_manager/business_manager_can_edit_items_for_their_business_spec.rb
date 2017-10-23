@@ -17,7 +17,7 @@ feature "business manager logs in" do
       fill_in "user[password]", with: "Password"
       click_on("Log in")
 
-      click_on "Generic_Vendor_1"
+    click_on "#{user_vendor.name}"
 
       click_on "View Items"
 
