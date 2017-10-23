@@ -4,7 +4,7 @@
     <hr>
     <%= form_for(current_user) do |f| %>
     <p>Name: <%= f.text_field :name, placeholder: 'Name' %></p>
-    <p>Email: <%= f.text_field :email, placeholder: 'Email' %></p>
+    <p>Email: <%= f.text_field :email, placeholder: 'e-mail' %></p>
     <p>Address: <%= f.text_field :address, placeholder: 'Address' %></p>
     <p>Password: <%= f.password_field :password, placeholder: 'Password' %></p>
     <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Update") %></a>
