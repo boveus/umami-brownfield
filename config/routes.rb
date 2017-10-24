@@ -40,11 +40,15 @@ Rails.application.routes.draw do
 
  namespace :api do
    namespace :v1 do
-    resources :vendors, only: [:index]
      scope :format => true, :constraints => { :format => 'json' } do
        post "/login" => 'sessions#create'
        delete'/logout' => 'sessions#destroy'
      end
+     namespace :vendors do
+       get '/:id/items', to: 'items#index'
+       get '/:id/users', to: 'users#index'
+     end
+     resources :vendors, only: [:index, :show]
    end
  end
 
