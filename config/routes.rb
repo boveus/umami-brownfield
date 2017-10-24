@@ -40,6 +40,9 @@ Rails.application.routes.draw do
 
  namespace :api do
    namespace :v1 do
+     namespace :vendors do
+       get '/:id/items', to: 'items#index'
+     end
     resources :vendors, only: [:index, :show]
    end
  end
