@@ -5,10 +5,29 @@ class Vendor::ItemsController < ApplicationController
     @tags = Tag.all
   end
 
+  def new
+    @vendor = Vendor.find(params[:vendor])
+    @item   = Item.new
+    @tags   = Tag.all
+  end
+
+  def create
+    @vendor = Vendor.find(params[:vendor])
+    @item   = Item.new(item_params)
+    @item.vendor = @vendor
+    @tags   = Tag.all
+    if @item.save
+      flash[:notice] = "#{@item.name} Created."
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
+  end
+
   def edit
-     @vendor = Vendor.find(params[:vendor])
-     @item = Item.find(params[:id])
-     @tags = Tag.all
+    @vendor = Vendor.find(params[:vendor])
+    @item = Item.find(params[:id])
+    @tags = Tag.all
   end
 
   def destroy
@@ -27,6 +46,8 @@ class Vendor::ItemsController < ApplicationController
       render :edit
     end
   end
+
+  private
 
   def item_params
     params.require(:item).permit(:name, :price, :image, :description, tag_ids: [])
