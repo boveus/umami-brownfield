@@ -3,9 +3,13 @@ require 'rails_helper'
 describe "as a guest user" do
 	describe "when I visit login page" do
 		it "I can click 'forgot my password' and reset it through two factor authentication" do
-			user = create(:user,name: "JustJoshin", email: "josh@example.com", verification_code: "12345", phone_number: "+13039296066")
+			user = create(:user, name: "JustJoshin",
+                           email: "josh@example.com",
+                           verification_code: "12345",
+                           phone_number: "+13039296066")
 			old_pass = user.password
 			new_pass = "newpass"
+      
 			visit '/login'
 			click_on "Forgot my password"
 			expect(current_path).to eq('/password-reset')
