@@ -45,6 +45,7 @@ Rails.application.routes.draw do
        get '/:id/users', to: 'users#index'
      end
     resources :vendors, only: [:index, :show]
+    resources :items, only: [:index, :show]
    end
  end
  # resources :sessions, only: [:create, :destroy]
