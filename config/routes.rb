@@ -45,7 +45,9 @@ Rails.application.routes.draw do
       get 'user',  to: 'orders/users#index'
       get 'items', to: 'orders/items#index'
     end
-    resources :tags, only: [:index, :show]
+    resources :tags, only: [:index, :show] do
+      get 'items', to: 'tags/items#index'
+    end
     resources :users, only: [:index, :show] do
       get 'orders', to: 'users/orders#index'
     end

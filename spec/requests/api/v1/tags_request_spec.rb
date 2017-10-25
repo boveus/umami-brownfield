@@ -22,4 +22,17 @@ describe "Tags API" do
     expect(tag["id"]).to eq(tag.id)
     expect(tag["name"]).to eq(tag.name)
   end
+  
+  it "sends a tag's items" do
+    tag = create(:tag)
+    item_1 = create(:item, tags: [tag])
+    item_2 = create(:item, tags: [tag])
+    
+    get "/api/v1/tags/#{tag.id}/items.json"
+    
+    items = JSON.parse(response.body)
+    expect(items[0]["name"]).to eq(item_1.name)
+    expect(items[1]["name"]).to eq(item_2.name)
+    
+  end
 end
