@@ -51,4 +51,29 @@ describe "Orders API" do
     expect(user["id"]).to eq(user_2.id)
     expect(user["name"]).to eq(user_2.name)
   end
+  
+  it "can get an orders's items" do
+    user_1 = create(:user)
+    user_2 = create(:user)
+    item_1 = create(:item)
+    item_2 = create(:item)
+    item_3 = create(:item)
+    orders_1 = create_list(:order, 5, user: user_1, items: [item_1])
+    orders_2 = create_list(:order, 5, user: user_2, items: [item_2, item_3])
+    order_1 = Order.first
+    order_2 = Order.last
+    
+    get "/api/v1/orders/#{order_1.id}/items.json"
+    
+    items = JSON.parse(response)
+    expect(items.count).to eq(1)
+    expect(items.first["name"]).to eq(item_1.name)
+     
+    get "/api/v1/orders/#{order_2.id}/items.json"
+    
+    items = JSON.parse(response)
+    expect(items.count).to eq(1)
+    expect(items[0]["name"]).to eq(item_2.name)
+    expect(items[1]["name"]).to eq(item_3.name)
+  end
 end

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :vendors, only: [:index]
     resources :orders, only: [:index, :show] do
       get 'user', to: 'orders/users#index'
+      resources :items, only: [:index]
     end
     resources :users, only: [:index, :show] do
     end
