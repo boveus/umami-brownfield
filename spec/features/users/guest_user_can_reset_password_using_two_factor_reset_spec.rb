@@ -30,7 +30,6 @@ describe "as a guest user" do
 			fill_in 'user[name]', with: "JustJoshin"
 			fill_in 'user[password]', with: "#{new_pass}"
       click_on "Log in"
-      save_and_open_page
 			expect(page.body).to include('JustJoshin')
 		end
 	end
