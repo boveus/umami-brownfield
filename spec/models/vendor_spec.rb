@@ -19,7 +19,7 @@ RSpec.describe Vendor, type: :model do
       end
 
       orders = vendor.unique_orders
-      binding.pry
+
       expect(orders.count).to eq(1)
       expect(orders.first.id).to eq(order.id)
     end
