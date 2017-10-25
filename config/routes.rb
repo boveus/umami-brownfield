@@ -44,6 +44,9 @@ Rails.application.routes.draw do
        get '/:id/items', to: 'items#index'
        get '/:id/users', to: 'users#index'
      end
+     namespace :items do
+       get '/:id/orders', to: 'orders#index'
+     end
     resources :vendors, only: [:index, :show]
     resources :items, only: [:index, :show]
    end
