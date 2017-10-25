@@ -46,6 +46,7 @@ Rails.application.routes.draw do
      end
      namespace :items do
        get '/:id/orders', to: 'orders#index'
+       get '/:id/tags', to: 'tags#index'
      end
     resources :vendors, only: [:index, :show]
     resources :items, only: [:index, :show]
