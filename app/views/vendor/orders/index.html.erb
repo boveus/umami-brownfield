@@ -19,7 +19,7 @@
       <% if order.paid? %>
       <%= link_to("mark as completed", vendor_order_path(@vendor, order, status: "completed"), method: :patch, class: "order#{order.id} waves-effect waves-light btn teal darken-4") %>
       <% end %>
+    <% end %>  
     </div>
-    <% end %>
   </div>
 </div>

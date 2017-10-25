@@ -1,7 +1,7 @@
 <h3> <% "Order: #{@order.id}" %> </h3>
 <% @items.each do |item| %>
   <p> User name: <%= @order.user.name %> </p>
-  <p> Price at sale: <%= item.price_at_sale %> </p>
+  <p> Price at sale: <%= number_to_currency(item.price_at_sale) %> </p>
   <p> Quantity Sold: <%= item.quantity_sold(@order.id) %> </p>
   <p> <%= link_to "#{item.name}", item_path(item) %> </p>
   <%= image_tag item.image %>

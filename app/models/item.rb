@@ -40,7 +40,7 @@ class Item < ApplicationRecord
   end
 
   def price_at_sale
-    order_items.first.item_price_record.to_i
+    order_items.first.item_price_record / 100
   end
 
   def quantity_sold(order_id)
