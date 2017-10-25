@@ -35,4 +35,6 @@ describe "Users API" do
     expect(orders.count).to eq(2)
     expect(orders.first["user_id"]).to eq(1)    
   end
+  
+  
 end
