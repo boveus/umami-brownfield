@@ -42,8 +42,8 @@ Rails.application.routes.draw do
    namespace :v1 do
     resources :vendors, only: [:index]
     resources :orders, only: [:index, :show] do
-      get 'user', to: 'orders/users#index'
-      resources :items, only: [:index]
+      get 'user',  to: 'orders/users#index'
+      get 'items', to: 'orders/items#index'
     end
     resources :users, only: [:index, :show] do
     end

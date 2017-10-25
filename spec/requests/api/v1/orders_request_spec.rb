@@ -65,14 +65,14 @@ describe "Orders API" do
     
     get "/api/v1/orders/#{order_1.id}/items.json"
     
-    items = JSON.parse(response)
-    expect(items.count).to eq(1)
+    items = JSON.parse(response.body)
+    expect(items.count).to eq(order_1.items.count)
     expect(items.first["name"]).to eq(item_1.name)
      
     get "/api/v1/orders/#{order_2.id}/items.json"
     
-    items = JSON.parse(response)
-    expect(items.count).to eq(1)
+    items = JSON.parse(response.body)
+    expect(items.count).to eq(order_2.items.count)
     expect(items[0]["name"]).to eq(item_2.name)
     expect(items[1]["name"]).to eq(item_3.name)
   end
