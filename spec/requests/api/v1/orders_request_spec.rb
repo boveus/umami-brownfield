@@ -41,7 +41,7 @@ describe "Orders API" do
     get "/api/v1/orders/#{order_1.id}/user.json"
     
     user = JSON.parse(response.body)
-    expect(user.count).to eq(16)
+    expect(user.count).to eq(4)
     expect(user["id"]).to eq(user_1.id)
     expect(user["name"]).to eq(user_1.name)
     

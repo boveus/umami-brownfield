@@ -8,7 +8,7 @@ describe "Users API" do
     expect(response).to be_success
     users = JSON.parse(response.body)
     expect(users.count).to eq(5)
-    expect(users.first.count).to eq(16)
+    expect(users.first.count).to eq(4)
   end
   
   it "sends one user" do
@@ -18,7 +18,7 @@ describe "Users API" do
     get "/api/v1/users/#{user.id}.json"
     expect(response).to be_success
     users = JSON.parse(response.body)
-    expect(users.count).to eq(16)
+    expect(users.count).to eq(4)
     expect(users.first).to eq(["id", 5])
   end
   
