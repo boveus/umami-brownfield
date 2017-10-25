@@ -3,7 +3,7 @@ module Api
     module Orders
       class UsersController < ApplicationController
         def index
-          @order = User.find_by(params[:order_id])
+          @order = Order.find(params["order_id"])
           render json: @order.user
         end
       end
