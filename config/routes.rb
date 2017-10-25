@@ -41,8 +41,11 @@ Rails.application.routes.draw do
  namespace :api do
    namespace :v1 do
     resources :vendors, only: [:index]
-    resources :orders, only: [:index, :show]
-    resources :users, only: [:index, :show]
+    resources :orders, only: [:index, :show] do
+      get 'user', to: 'users/users#show'
+    end
+    resources :users, only: [:index, :show] do
+    end
    end
  end
  # resources :sessions, only: [:create, :destroy]
