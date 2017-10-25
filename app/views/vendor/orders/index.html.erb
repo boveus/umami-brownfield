@@ -1,0 +1,25 @@
+<h3> <% "#{@vendor} orders index" %> </h3>
+
+<div class="row">
+  <div class="col m1">
+  </div>
+  <div class="col m10">
+    <div class="card-panel grey darken-1">
+      <% @orders.each do |order| %>
+      <div>
+        <p> <%= link_to "Order: #{order.id}", vendor_order_path(@vendor, order) %> </p>
+        <p>Status: <%= order.status %></p><br>
+      </div>
+      <% if order.paid? || order.ordered? %>
+      <%= link_to "cancel order", vendor_order_path(@vendor, order, status: "cancelled"), method: :patch, class: "order#{order.id} waves-effect waves-light btn teal darken-4" %>
+      <% end %>
+      <% if order.ordered? %>
+      <%= link_to "mark as paid", vendor_order_path(@vendor, order, status: "paid"), method: :patch, class: "order#{order.id} waves-effect waves-light btn teal darken-4" %>
+      <% end %>
+      <% if order.paid? %>
+      <%= link_to("mark as completed", vendor_order_path(@vendor, order, status: "completed"), method: :patch, class: "order#{order.id} waves-effect waves-light btn teal darken-4") %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

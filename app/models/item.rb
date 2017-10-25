@@ -39,4 +39,11 @@ class Item < ApplicationRecord
     .item_price_record / 100
   end
 
+  def price_at_sale
+    order_items.first.item_price_record.to_i
+  end
+
+  def quantity_sold(order_id)
+    order_items.where(order_id: order_id).count
+  end
 end

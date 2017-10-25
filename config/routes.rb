@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
  namespace :vendor, path: ':vendor', as: :vendor do
    resources :items
+   resources :orders
  end
 
  namespace :api do
