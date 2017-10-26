@@ -1,6 +1,5 @@
 class PasswordController < ApplicationController
   def index
-    # binding.pry
   end
   
   def new
