@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021030141) do
+ActiveRecord::Schema.define(version: 20171026184736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20171021030141) do
     t.string "image"
     t.string "description"
     t.string "slug"
+    t.integer "status", default: 0
   end
 
   add_foreign_key "item_tags", "items"

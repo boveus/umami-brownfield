@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col m1">
+
+  </div>
+  <div class="col m10">
+    <div class="card">
+      <div class="card-image">
+        <%= image_tag @vendor.image %>
+        <span class="card-title black"><%= @vendor.name.titleize %></span>
+      </div>
+      <div class="card-content">
+        <p><%= @vendor.description %></p><br>
+        <% if @vendor.online? %>
+        <p><%= link_to "Take business offline", vendor_path(@vendor, status: "offline"),
+            method: "patch", data: {confirm: "Really take #{@vendor.name} offline?" } %></p>
+        <% else %>
+        <p><%= link_to "Put business back online", vendor_path(@vendor, status: "online"),
+            method: "patch", data: {confirm: "Really take #{@vendor.name} online?" } %></p>
+        <% end %>
+        <p><%= link_to "View Items", vendor_items_path(@vendor) %> </p>
+        <p><%= link_to "View Orders", vendor_orders_path(@vendor) %> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

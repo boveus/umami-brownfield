@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     if current_user.business_manager?
       @vendor = current_user.vendor
       render :business_manager_dashboard
+    elsif current_user.platform_admin?
+      @vendors = Vendor.all
+      render :platform_admin_dashboard
     else
       @popular_items = Item.by_popularity.limit(10)
     end
