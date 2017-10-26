@@ -24,6 +24,10 @@ class User < ApplicationRecord
     roles.exists?(name: "business_manager")
   end
 
+  def business_admin?
+    roles.exists?(name: "business_admin")
+  end
+
   def self.find_or_create_from_auth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]
