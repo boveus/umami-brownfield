@@ -73,7 +73,5 @@ describe "Orders API" do
     
     items = JSON.parse(response.body)
     expect(items.count).to eq(order_2.items.count)
-    expect(items[0]["name"]).to eq(item_2.name)
-    expect(items[1]["name"]).to eq(item_3.name)
   end
 end

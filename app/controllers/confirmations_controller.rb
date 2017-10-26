@@ -9,9 +9,9 @@ class ConfirmationsController < ApplicationController
   
   def create
     unless current_user
-      @user = User.find_by(verification_code: params["verification_code"])
+      @user = User.find_by(user_params)
     else
-      @user = current_user
+       @user = current_user
     end
     if @user.verification_code == params[:verification_code]
       session[:authenticated] = true
@@ -21,4 +21,12 @@ class ConfirmationsController < ApplicationController
         render :new
     end
   end
+  
+  
+  private
+  
+    def user_params
+      params.permit(:verification_code)
+    end
+      
 end
