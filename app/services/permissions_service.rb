@@ -6,13 +6,12 @@ class PermissionsService
   end
 
   def authorized?
-    default_routes
     if @user.business_manager?
-      business_manager_permissions
+      return business_manager_permissions
     elsif @user.admin?
-      admin_permissions
+      return admin_permissions
     else
-      return true
+      return default_routes
     end
   end
 
@@ -21,6 +20,7 @@ class PermissionsService
   end
 
   def admin_permissions
+    return true if @controller == 'users' && @action == 'dashboard'
     return true if @controller == 'admin/base'
     return true if @controller == 'admin/items'
     return true if @controller == 'admin/orders'
@@ -31,7 +31,7 @@ class PermissionsService
     return true if @controller == 'password' && @action == (%w(index show))
     return true if @controller == 'items' && @action == (%w(index show))
     return true if @controller == 'tags' && @action == (%w(index show))
-    return true if @controller == 'vendors' && @action == (%w(index show))
+    return true if @controller == 'vendors' && @action == (%w(index show dashboard))
     return true if @controller == 'orders' && @action == (%w(index show))
     return true if @controller == 'sessions' && @action == (%w(new create destroy))
     return true if @controller == 'cart' && @action == (%w(show))
