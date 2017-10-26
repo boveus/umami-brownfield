@@ -9,19 +9,18 @@ feature "business admin logs in" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
+    # When I log in to my dashboard
     visit '/dashboard'
     expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Business Admin Dashboard")
+    # I should see an index of all of the businesses I am an admin for
     expect(page).to have_content(user_vendor.name)
+
+    # when I click on the business and view the business' individual page
+    click_on(user_vendor.name)
+
+    # I should see a button to edit the business information for each business
+    # when i click on the edit button i should be taken to a page to edit the business inFO
 
   end
 end
-
-
-
-
-# When I log in to my dashboard
-# I should see an index of all of the businesses I am an admin for
-# when I click on the business and view the business' individual page
-# I should see a button to edit the business information for each business
-# when i click on the edit button i should be taken to a page to edit the business inFO
