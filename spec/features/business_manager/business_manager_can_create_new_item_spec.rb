@@ -4,7 +4,7 @@ feature "business manager logs in" do
   it "and they add a new item" do
     user = create(:user)
     user.roles << Role.create(name: "business_manager", permission_level: 3)
-    user_vendor = create(:vendor)
+    user_vendor = create(:vendor, name: "Batman")
     user.update(vendor: user_vendor)
     vendor = create_list(:vendor, 5)
     user_vendor.items << create_list(:item, 5)
@@ -17,7 +17,7 @@ feature "business manager logs in" do
     fill_in "user[password]", with: "Password"
     click_on("Log in")
 
-    click_on "Generic_Vendor_1"
+    click_on "Batman"
 
     click_on "View Items"
 
@@ -44,7 +44,7 @@ feature "business manager logs in" do
     #And when I visit user dashboard I see the item as well
 
     visit dashboard_path
-    click_on "Generic_Vendor_1"
+    click_on "Batman"
     click_on "View Items"
 
     expect(page).to have_content("New_name")
