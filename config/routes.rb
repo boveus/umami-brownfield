@@ -49,16 +49,26 @@ Rails.application.routes.draw do
 
  namespace :api do
    namespace :v1 do
-     namespace :vendors do
-       get '/:id/items', to: 'items#index'
-       get '/:id/users', to: 'users#index'
+    resources :orders, only: [:index, :show] do
+      get 'user',  to: 'orders/users#index'
+      get 'items', to: 'orders/items#index'
+    end
+    resources :tags, only: [:index, :show] do
+      get 'items', to: 'tags/items#index'
+    end
+    resources :users, only: [:index, :show] do
+      get 'orders', to: 'users/orders#index'
+    end
+    namespace :vendors do
+      get '/:id/items', to: 'items#index'
+      get '/:id/users', to: 'users#index'
      end
-     namespace :items do
-       get '/:id/orders', to: 'orders#index'
-       get '/:id/tags', to: 'tags#index'
-     end
+    namespace :items do
+      get '/:id/orders', to: 'orders#index'
+      get '/:id/tags', to: 'tags#index'
+    end
     resources :vendors, only: [:index, :show]
-    resources :items, only: [:index, :show]
+    resources :items,  only: [:index, :show]
    end
  end
  
