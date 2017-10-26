@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  root to: "vendors#index"
 
- resources :vendors, only: [:index, :show]
+ resources :vendors, only: [:index, :show, :edit]
 
  resources :items,  only: [:index, :show]
  resources :tags,   only: [:index, :show]
@@ -32,8 +32,8 @@ Rails.application.routes.draw do
  post "/cart"          => "carts#create"
  patch "/cart"         => "carts#update"
  delete "/cart"        => "carts#destroy"
- 
- 
+
+
 
  get '/auth/google_oauth2', as: :google_login
  get '/auth/twitter', as: :twitter_login
@@ -72,7 +72,7 @@ Rails.application.routes.draw do
     resources :items,  only: [:index, :show]
    end
  end
- 
+
  get "/:name"          => "tags#show"
 
  # resources :sessions, only: [:create, :destroy]

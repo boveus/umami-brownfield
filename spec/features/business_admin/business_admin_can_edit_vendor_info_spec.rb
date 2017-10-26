@@ -20,12 +20,12 @@ feature "business admin logs in" do
     click_on(user_vendor.name)
 
     # I should see a button to edit the business information for each business
-    click_on "Edit"
+    click_on "Edit Vendor Info"
 
     # when i click on the edit button i should be taken to a page to edit the business inFO
     expect(current_path).to eq(edit_vendor_path)
 
-    
+
 
   end
 end
