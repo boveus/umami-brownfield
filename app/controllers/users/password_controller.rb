@@ -5,7 +5,8 @@ module Users
    def edit
      if current_user
        @user = current_user
-     else; @user = User.find(params["format"])
+     else
+       @user = User.find(params["format"])
      end
    end
  
