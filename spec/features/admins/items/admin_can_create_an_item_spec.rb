@@ -1,36 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "admin can create an item" do
-  xscenario "from main page" do
-    admin = create(:user, role: 1)
-    visit root_path
-    click_on("Login")
-    fill_in "user[name]", with: admin.name
-    fill_in "user[password]", with: "Password"
-    click_on("Log in")
-    tag = create(:tag)
-    vendor = create(:vendor)
-    item = create(:item, vendor: vendor)
 
-    expect(page).to have_content("Create New Item")
-
-    click_on("Create New Item")
-
-    expect(current_path).to eq new_admin_item_path
-
-    fill_in "item[name]", with: item.name
-    fill_in "item[description]", with: item.description
-    fill_in "item[price]", with: item.price
-    fill_in "item[image]", with: item.image
-    check "#{tag.name}"
-    within("p") do
-      click_on("Create")
-    end
-
-    expect(current_path).to eq(item_path(Item.find_by(name: item.name)))
-    expect(page).to have_content("#{item.name} Created")
-    expect(page).to have_content(tag.name.titleize)
-  end
 
   scenario "without admin rights" do
     visit root_path
