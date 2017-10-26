@@ -66,7 +66,6 @@ end
  item_collection.each do |item|
    item.tags << tag_collection.sample(rand(1..5))
    counter ++
-   puts "Ding ding #{counter}"
  end
 
 
