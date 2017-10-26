@@ -100,34 +100,4 @@ RSpec.feature "admin can create an item" do
     expect(current_path).to eq(admin_items_path)
     expect(page).to have_content("Description has already been taken")
   end
-
-  xscenario "without image" do
-    admin = create(:user, role: 1)
-    visit root_path
-    click_on("Login")
-    fill_in "user[name]", with: admin.name
-    fill_in "user[password]", with: "Password"
-    click_on("Log in")
-    tag = create(:tag)
-    item = build(:item)
-
-    expect(page).to have_content("Create New Item")
-
-    click_on("Create New Item")
-
-    expect(current_path).to eq new_admin_item_path
-
-    fill_in "item[name]", with: item.name
-    fill_in "item[description]", with: item.description
-    fill_in "item[price]", with: item.price
-    check "#{tag.name}"
-    within("p") do
-      click_on("Create")
-    end
-
-    expect(current_path).to eq(item_path(Item.find_by(name: item.name)))
-    expect(page).to have_content("#{item.name} Created")
-    expect(page).to have_xpath("//img[@src='http://img.providr.com/n-SALT-628x314.jpg']")
-    expect(page).to have_content(tag.name.titleize)
-  end
 end
