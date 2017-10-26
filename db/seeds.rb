@@ -62,14 +62,13 @@ end
  order_collection = Order.all
  order_items = OrderItem.all
 
- counter = 0
+
  item_collection.each do |item|
    item.tags << tag_collection.sample(rand(1..5))
-   counter ++
  end
 
 
-order_items.each do |order_item|
-  order_item.item_price_at_order unless order_item.item_price_record
-  order_item.save
-end
+  order_items.each do |order_item|
+    order_item.item_price_at_order unless order_item.item_price_record
+    order_item.save
+  end
