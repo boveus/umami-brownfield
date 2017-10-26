@@ -4,7 +4,7 @@ feature "business admin logs in" do
   context "and they click on edit an item" do
     it "takes them to an item edit page and lets them update items for their business" do
       user = create(:user)
-      user.roles << Role.create(name: "business_admin", permission_level: 3)
+      user.roles << Role.create(name: "business_admin", permission_level: 4)
       user_vendor = create(:vendor)
       user.update(vendor: user_vendor)
       vendor = create_list(:vendor, 5)
