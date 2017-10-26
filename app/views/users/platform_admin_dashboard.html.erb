@@ -1,0 +1,10 @@
+<h3> Platform Admin Dashboard </h3>
+
+<h1> All businesses </h1>
+<table>
+  <% @vendors.each do |vendor| %>
+  <tr>
+    <td> <%= link_to vendor.name, vendor_path(vendor) %> </td>
+  </tr>
+  <% end %>
+</table>

@@ -8,6 +8,7 @@ feature "As a user visiting the site" do
       visit items_path
 
       click_on("add_shopping_cart")
+      binding.pry
 
       expect(page).to have_content("You now have 1 #{item1.name}.")
     end
