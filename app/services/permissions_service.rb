@@ -42,5 +42,6 @@ class PermissionsService
     return true if @controller == 'orders' && (%w(index show)).include?(@action)
     return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
     return true if @controller == 'carts'
+    return true if @controller == 'vendor/items' && (%w(index show)).include?(@action)
   end
 end
