@@ -6,7 +6,9 @@ class PermissionsService
   end
 
   def authorized?
-    if @user.business_manager?
+    if @user.platform_admin?
+      return platform_admin_permissions
+    elsif @user.business_manager?
       return business_manager_permissions
     elsif @user.admin?
       return admin_permissions
@@ -22,6 +24,15 @@ class PermissionsService
     return true if @controller == 'vendor/orders'
     return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
     return true if @controller == 'users' && (%w(dashboard)).include?(@action)
+  end
+
+  def platform_admin_permissions
+    if business_manager_permissions
+      return true
+    else
+    return true if @controller == 'vendors' && (%w(index show update)).include?(@action)
+
+    end
   end
 
   def admin_permissions
