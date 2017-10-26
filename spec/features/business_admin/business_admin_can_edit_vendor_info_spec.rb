@@ -1,3 +1,22 @@
+require 'rails_helper'
+
+feature "business admin logs in" do
+  it "and they can view and modify the vendors information" do
+    user = create(:user)
+    user.roles << Role.create(name: "business_admin", permission_level: 4)
+    user_vendor = create(:vendor)
+    user.update(vendor: user_vendor)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit '/dashboard'
+    expect(current_path).to eq(dashboard_path)
+  end
+end
+
+
+
+
 # When I log in to my dashboard
 # I should see an index of all of the businesses I am an admin for
 # when I click on the business and view the business' individual page
