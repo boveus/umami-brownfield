@@ -11,6 +11,9 @@ feature "business admin logs in" do
 
     visit '/dashboard'
     expect(current_path).to eq(dashboard_path)
+    expect(page).to have_content("Business Admin Dashboard")
+    expect(page).to have_content(user_vendor.name)
+
   end
 end
 
