@@ -132,9 +132,9 @@ RSpec.feature "A a guest user(customer)" do
   
   it "can't view vendors that are offline" do
     vendor_on = create(:vendor, status: "online")
-    vendor_off = create(:vendor, status: "online")
+    vendor_off = create(:vendor, status: "offline")
     
-    visit root
+    visit '/'
     
     expect(page).to have_content(vendor_on.name)
     expect(page).to_not have_content(vendor_off.name)
