@@ -25,6 +25,7 @@ class PermissionsService
     return true if @controller == 'admin/items'
     return true if @controller == 'admin/orders'
     return true if @controller == 'admin/users'
+    return true if @controller == 'sessions' && @action == (%w(new create destroy))
   end
 
   def default_routes
@@ -36,5 +37,4 @@ class PermissionsService
     return true if @controller == 'sessions' && @action == (%w(new create destroy))
     return true if @controller == 'cart' && @action == (%w(show))
   end
-
 end
