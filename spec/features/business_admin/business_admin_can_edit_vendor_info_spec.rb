@@ -32,7 +32,7 @@ feature "business admin logs in" do
     expect(current_path).to eq(vendor_path(user_vendor))
 
     expect(page).to have_content("Salty Bob's Bitter Stuff Stand")
-    expect(page).to have_css("#image")
+    expect(page).to have_css(".card-image > img:nth-child(1)")
     expect(page).to have_content("Country Boy Will Survive. Pass me a Busch!")
   end
 end

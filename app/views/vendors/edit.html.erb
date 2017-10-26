@@ -5,7 +5,7 @@
     <%= form_for(@vendor) do |f| %>
     <p>Name: <%= f.text_field :name %></p>
     <p>Description: <%= f.text_area :description %></p>
-    <p>Image Url: <%= f.text_field :image %></p>
+    <p class="vendor_image">Image Url: <%= f.text_field :image %></p>
     <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Update") %></a>
     <% end %>
   </div>
