@@ -10,7 +10,8 @@ class ConfirmationsController < ApplicationController
   def create
     unless current_user
       @user = User.find_by(verification_code: params["verification_code"])
-    else; @user = current_user
+    else
+      @user = current_user
     end
     if @user.verification_code == params[:verification_code]
       session[:authenticated] = true
