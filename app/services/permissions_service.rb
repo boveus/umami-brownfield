@@ -35,6 +35,7 @@ class PermissionsService
   end
 
   def default_permissions
+    return true if @controller == 'users' && @action == 'dashboard'
     return true if @controller == 'password' && (%w(index show)).include?(@action)
     return true if @controller == 'items' && (%w(index show)).include?(@action)
     return true if @controller == 'tags' && (%w(index show)).include?(@action)

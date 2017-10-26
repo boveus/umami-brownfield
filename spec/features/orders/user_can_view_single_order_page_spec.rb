@@ -17,6 +17,7 @@ feature "user can view single order" do
       order.items << item
     end
 
+
     order.items << item2
 
     visit orders_path
