@@ -12,7 +12,7 @@ class PermissionsService
     elsif @user.admin?
       admin_permissions
     else
-      return false
+      return true
     end
   end
 
@@ -28,6 +28,7 @@ class PermissionsService
   end
 
   def default_routes
+    return true if @controller == 'password' && @action == (%w(index show))
     return true if @controller == 'items' && @action == (%w(index show))
     return true if @controller == 'tags' && @action == (%w(index show))
     return true if @controller == 'vendors' && @action == (%w(index show))
