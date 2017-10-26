@@ -16,11 +16,13 @@ describe "as a platform_manager" do
       click_on vendors.first.name
       
       click_on("Take business offline")
+        
+      expect(page).to_not have_link("Take business offline")
+      expect(Vendor.first.status).to eq("offline")
       
-      click_on("View Items")
-      expect(current_path).to eq('/')
-      
-      
+      click_on("Put business back online")
+      expect(page).to_not have_link("Put business back online")
+      expect(Vendor.first.status).to eq("online")
     end
   end
 end
