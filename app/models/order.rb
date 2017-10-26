@@ -35,4 +35,9 @@ class Order < ApplicationRecord
   def total_price_when_ordered
     order_items.sum(:item_price_record) / 100
   end
+
+  def vendors_items(id)
+    items.
+    where(vendor_id: id)
+  end
 end

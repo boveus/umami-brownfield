@@ -65,6 +65,5 @@ RSpec.describe Order, type: :model do
 
       expect(order.get_item_total(order.items.first.id)).to eq(0.05)
     end
-
   end
 end
