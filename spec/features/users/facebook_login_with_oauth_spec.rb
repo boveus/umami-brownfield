@@ -7,6 +7,8 @@ describe 'as a user' do
 			mock_auth_hash_facebook
 			click_link "Sign in with Facebook"
 			expect(current_path).to eq('/dashboard')
+      expect(page.body).to have_content("Logged in as Sam Snider")
+      expect(page.body).to have_content("sam_redins@yahoo.com")
 		end
 	end
 end
