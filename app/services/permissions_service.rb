@@ -11,12 +11,12 @@ class PermissionsService
     elsif @user.admin?
       return admin_permissions
     else
-      return default_routes
+      return default_permissions
     end
   end
 
   def business_manager_permissions
-    return true if @controller == 'vendor/items' && @action == (%w(index show edit update))
+    return true if @controller == 'vendor/items' && (%w(index show edit update)).include?(@action)
   end
 
   def admin_permissions
@@ -25,16 +25,16 @@ class PermissionsService
     return true if @controller == 'admin/items'
     return true if @controller == 'admin/orders'
     return true if @controller == 'admin/users'
-    return true if @controller == 'sessions' && @action == (%w(new create destroy))
+    return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
   end
 
-  def default_routes
-    return true if @controller == 'password' && @action == (%w(index show))
-    return true if @controller == 'items' && @action == (%w(index show))
-    return true if @controller == 'tags' && @action == (%w(index show))
-    return true if @controller == 'vendors' && @action == (%w(index show dashboard))
-    return true if @controller == 'orders' && @action == (%w(index show))
-    return true if @controller == 'sessions' && @action == (%w(new create destroy))
-    return true if @controller == 'cart' && @action == (%w(show))
+  def default_permissions
+    return true if @controller == 'password' && (%w(index show)).include?(@action)
+    return true if @controller == 'items' && (%w(index show)).include?(@action)
+    return true if @controller == 'tags' && (%w(index show)).include?(@action)
+    return true if @controller == 'vendors' && (%w(index show dashboard)).include?(@action)
+    return true if @controller == 'orders' && (%w(index show)).include?(@action)
+    return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
+    return true if @controller == 'cart' && (%w(show)).include?(@action)
   end
 end
