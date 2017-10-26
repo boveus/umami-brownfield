@@ -10,7 +10,6 @@ class User < ApplicationRecord
   enum role: [:default, :admin, :business_manager]
 
   def top_level_role
-    binding.pry
     top_role = roles
     .where(permission_level: roles.select('MAX(permission_level)'))
     .first

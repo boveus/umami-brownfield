@@ -23,8 +23,9 @@ feature "business admin logs in" do
     click_on "Edit"
 
     # when i click on the edit button i should be taken to a page to edit the business inFO
+    expect(current_path).to eq(edit_vendor_path)
 
-
+    
 
   end
 end
