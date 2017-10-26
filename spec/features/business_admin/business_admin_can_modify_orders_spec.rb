@@ -13,7 +13,8 @@ feature "business admin logs in" do
 
     user_vendor_items = create_list(:item, 30, vendor: user_vendor)
     other_vendor_items = create_list(:item, 30, vendor: vendors.first)
-    order1, order2 = create_list(:order, 2, user: user)
+    order1 = create(:order, user: user)
+    order2 = create(:order, user: user)
     order3 = create(:order, user: user2, status: "paid")
     order1.items << user_vendor_items
     order2.items << user_vendor_items << other_vendor_items
@@ -35,9 +36,9 @@ feature "business admin logs in" do
 
     click_on "Order: #{order2.id}"
 
-    expect(page).to have_content(order1.user.name)
+    expect(page).to have_content(order2.user.name)
     expect(page).to_not have_content(order3.user.name)
-    expect(page).to have_content(order1.items.first.name)
-    expect(page).to have_content(order1.items.fourth.name)
+    expect(page).to have_content(order2.items.first.name)
+    expect(page).to have_content(order2.items.fourth.name)
   end
 end
