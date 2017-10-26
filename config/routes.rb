@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :users do
+    get '/password-confirmation', to: 'password#reset', as: :password_reset
+    patch '/password-confirmation/update', to: 'password#update', as: :password_patch
+    get '/password-edit',  to: 'password#edit', as: :password_edit
+  end
+  get 'password-reset', to: 'password#index'
+  post 'password-reset', to: 'password#new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  root to: "vendors#index"
 
@@ -25,7 +32,8 @@ Rails.application.routes.draw do
  post "/cart"          => "carts#create"
  patch "/cart"         => "carts#update"
  delete "/cart"        => "carts#destroy"
- get "/:name"          => "tags#show"
+ 
+ 
 
  get '/auth/google_oauth2', as: :google_login
  get '/auth/twitter', as: :twitter_login
@@ -33,6 +41,7 @@ Rails.application.routes.draw do
  get 'auth/:provider/callback', to: 'sessions#create'
  get 'auth/failure', to: redirect('/')
  get 'signout', to: 'sessions#destroy', as: 'signout'
+ resources :confirmations, only: [:new, :create]
 
  namespace :vendor, path: ':vendor', as: :vendor do
    resources :items
@@ -62,6 +71,9 @@ Rails.application.routes.draw do
     resources :items,  only: [:index, :show]
    end
  end
+ 
+ get "/:name"          => "tags#show"
+
  # resources :sessions, only: [:create, :destroy]
  # resource :home, only: [:show]
 
