@@ -25,6 +25,7 @@ class PermissionsService
     return true if @controller == 'admin/items'
     return true if @controller == 'admin/orders'
     return true if @controller == 'admin/users'
+    return true if @controller == 'items'
     return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
   end
 
