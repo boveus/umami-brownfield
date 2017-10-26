@@ -10,4 +10,8 @@ class VendorsController < ApplicationController
   def edit
     @vendor = Vendor.find(params[:id])
   end
+
+  def update
+
+  end
 end
