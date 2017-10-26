@@ -16,7 +16,11 @@ class PermissionsService
   end
 
   def business_manager_permissions
-    return true if @controller == 'vendor/items' && (%w(index show edit update)).include?(@action)
+    return true if @controller == 'vendors' && (%w(index show)).include?(@action)
+    return true if @controller == 'vendor/items'
+    return true if @controller == 'items'
+    return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
+    return true if @controller == 'users' && (%w(dashboard)).include?(@action)
   end
 
   def admin_permissions
