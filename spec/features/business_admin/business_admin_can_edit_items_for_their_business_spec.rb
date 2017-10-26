@@ -22,14 +22,17 @@ feature "business admin logs in" do
       click_on "View Items"
 
       click_on "edit_item_1"
-
       fill_in "item[name]", with: "New_name"
-      fill_in "item[price]", with: "3.50"
+      fill_in "item[price]", with: "350"
       fill_in "item[description]", with: "This item costs three fifty"
 
       click_on "Update Item"
 
       expect(current_path).to eq(item_path(user_vendor.items.first))
+      expect(page).to have_content("New_name")
+      expect(page).to have_content("3.50")
+      expect(page).to have_content("This item costs three fifty")
+
     end
   end
 end
