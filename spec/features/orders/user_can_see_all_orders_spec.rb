@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "user can see all orders" do
   scenario "from orders path" do
     user = create(:user)
+    user.roles << Role.create(name: "registered_user", permission_level: 2)
     visit root_path
     click_on("Login")
     fill_in "user[name]", with: user.name
@@ -10,6 +11,7 @@ RSpec.feature "user can see all orders" do
     click_on("Log in")
 
     user2 = create(:user)
+    user2.roles << Role.create(name: "registered_user", permission_level: 2)
     order1, order2 = create_list(:order, 2, user: user)
     order3 = create(:order, user: user2)
 
@@ -22,13 +24,12 @@ RSpec.feature "user can see all orders" do
 
   scenario "when not logged in" do
     user2 = create(:user)
+    user2.roles << Role.create(name: "registered_user", permission_level: 2)
 
     visit root_path
 
     expect(page).to_not have_content("Orders")
 
-    visit("/orders")
-
-    expect(current_path).to eq(login_path)
+    expect{ visit "/orders" }.to raise_error(ActionController::RoutingError)
   end
 end
