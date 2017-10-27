@@ -7,11 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
+Order.destroy_all
 Item.destroy_all
 Tag.destroy_all
 Vendor.destroy_all
 User.destroy_all
-Order.destroy_all
+
 
 items = CSV.foreach "./db/items.csv", headers: true, header_converters: :symbol
 
@@ -46,7 +47,7 @@ end
  20.times do
   Tag.create!(name: Faker::Address.unique.country)
  end
- 
+
  user_collection = User.all
  item_collection = Item.all
 
