@@ -12,6 +12,8 @@ class PermissionsService
       return business_manager_permissions
     elsif @user.admin?
       return admin_permissions
+    elsif @user.registered_user?
+      return registered_user_permissions
     else
       return default_permissions
     end
@@ -31,7 +33,6 @@ class PermissionsService
       return true
     else
     return true if @controller == 'vendors' && (%w(index show update)).include?(@action)
-
     end
   end
 
@@ -45,13 +46,20 @@ class PermissionsService
     return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
   end
 
-  def default_permissions
-    return true if @controller == 'users' && @action == 'dashboard'
+  def registered_user_permissions
+    if default_permissions
+      return true
+    else
+    return true if @controller == 'orders' 
     return true if @controller == 'password' && (%w(index show)).include?(@action)
+    end
+  end
+
+  def default_permissions
+    return true if @controller == 'users' && (%w(dashboard new create)).include?(@action)
     return true if @controller == 'items' && (%w(index show)).include?(@action)
     return true if @controller == 'tags' && (%w(index show)).include?(@action)
     return true if @controller == 'vendors' && (%w(index show dashboard)).include?(@action)
-    return true if @controller == 'orders' && (%w(index show)).include?(@action)
     return true if @controller == 'sessions' && (%w(new create destroy)).include?(@action)
     return true if @controller == 'carts'
     return true if @controller == 'vendor/items' && (%w(index show)).include?(@action)

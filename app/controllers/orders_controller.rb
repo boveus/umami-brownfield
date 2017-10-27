@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = current_user.orders.find_by(id: params[:id])
-    #require 'pry'; binding.pry
     unless @order
       render file: "/public/404"
     end

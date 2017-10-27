@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.feature "A registered user" do
   scenario "can view order history" do
     user = create(:user)
+    user.roles << Role.create(name: "registered_user", permission_level: 2)
     orders = create_list(:order, 3, user_id: user.id)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    
+
     visit '/'
 
     find(:css, ".dropdown-content").click_on("Orders")
