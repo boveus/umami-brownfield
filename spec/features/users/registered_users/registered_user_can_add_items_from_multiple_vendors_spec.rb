@@ -3,6 +3,7 @@ require 'rails_helper'
 feature "As an registered user" do
   scenario "user can add items from multiple vendors to the cart" do
     user1 = create(:user, role: 0)
+    user1.roles << Role.create(name: "registered_user", permission_level: 2)
     vendor1 = create(:vendor)
     item1 = create(:item, vendor_id: vendor1.id)
     vendor2 = create(:vendor)

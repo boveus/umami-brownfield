@@ -19,11 +19,9 @@ RSpec.feature "As an authenticated user" do
     expect(page).to have_content("Logout")
     expect(page).to_not have_content("Login")
 
-    visit "/orders/#{user2.orders.last.id}"
-
-    expect(page).to have_content("The page you were looking for doesn't exist")
+    expect{ visit "/orders/#{user2.orders.last.id}" }.to raise_error(ActionController::RoutingError)
   end
-  
+
   scenario "cannot visit admin pages" do
     user1 = build(:user)
 
@@ -45,8 +43,6 @@ RSpec.feature "As an authenticated user" do
     expect(page).to have_content("Logout")
     expect(page).to_not have_content("Login")
 
-    visit '/admin/dashboard'
-
-    expect(page).to have_content("The page you were looking for doesn't exist")
+    expect{ visit "/admin/dashboard" }.to raise_error(ActionController::RoutingError)
   end
 end

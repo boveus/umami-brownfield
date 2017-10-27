@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save!
+      @user.roles << Role.find_or_create_by(name: "registered_user", permission_level: 2)
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{@user.name}"
       UserNotifier.send_signup_email(@user).deliver

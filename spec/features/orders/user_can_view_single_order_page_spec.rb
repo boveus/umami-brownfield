@@ -3,6 +3,7 @@ require 'rails_helper'
 feature "user can view single order" do
   scenario "from orders page" do
     user = create(:user)
+    user.roles << Role.create(name: "registered_user", permission_level: 2)
     visit root_path
     click_on("Login")
     fill_in "user[name]", with: user.name
@@ -16,6 +17,7 @@ feature "user can view single order" do
     2.times do
       order.items << item
     end
+
 
     order.items << item2
 

@@ -3,6 +3,7 @@ require 'rails_helper'
 feature "As a registered user" do
   scenario "user can edit their personal information" do
     user1 = create(:user, role: 0)
+    user1.roles << Role.create(name: "registered_user", permission_level: 2)
     vendor1 = create(:vendor)
     item1 = create(:item, vendor_id: vendor1.id)
     vendor2 = create(:vendor)

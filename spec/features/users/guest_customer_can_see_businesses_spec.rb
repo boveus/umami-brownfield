@@ -94,6 +94,7 @@ RSpec.feature "A a guest user(customer)" do
 
   scenario "can login before completing checkout" do
     user = create(:user)
+    user.roles << Role.find_or_create_by(name: "registered_user", permission_level: 2)
     vendor = create(:vendor)
     items = create_list(:item, 3, vendor_id: vendor.id)
 
@@ -129,13 +130,13 @@ RSpec.feature "A a guest user(customer)" do
     expect(page).to have_css("tbody tr", count: 1)
     expect(page).to have_content("ordered")
   end
-  
+
   it "can't view vendors that are offline" do
     vendor_on = create(:vendor, status: "online")
     vendor_off = create(:vendor, status: "offline")
-    
+
     visit '/'
-    
+
     expect(page).to have_content(vendor_on.name)
     expect(page).to_not have_content(vendor_off.name)
   end

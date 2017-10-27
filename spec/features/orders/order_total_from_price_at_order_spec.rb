@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "user can view single order" do
   scenario "from orders page" do
     user = create(:user)
+    user.roles << Role.create(name: "registered_user", permission_level: 2)
     visit root_path
     click_on("Login")
     fill_in "user[name]", with: user.name
@@ -29,4 +30,3 @@ RSpec.feature "user can view single order" do
     expect(page).to have_content(order.total_price_when_ordered)
   end
 end
-

@@ -28,13 +28,17 @@ class User < ApplicationRecord
   def business_manager?
     roles.exists?(name: "business_manager")
   end
-  
+
   def platform_admin?
     roles.exists?(name: "platform_admin")
   end
 
   def business_admin?
     roles.exists?(name: "business_admin")
+  end
+
+  def registered_user?
+    roles.exists?(name: "registered_user")
   end
 
   def self.find_or_create_from_auth(auth)
@@ -50,6 +54,7 @@ class User < ApplicationRecord
       user.image = auth["info"]["image"]
       user.address = "123 ABC St"
       user.password = 'n/a'
+      user.roles
       user.oauth_token = auth["credentials"]["token"]
       user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"]) if auth["credentials"]["expires_at"]
       user.save

@@ -8,9 +8,7 @@ RSpec.feature "admin can create an item" do
 
     expect(page).to_not have_content("Create New Item")
 
-    visit new_admin_item_path
-
-    expect(page).to have_content("404")
+    expect{ visit new_admin_item_path }.to raise_error(ActionController::RoutingError)
   end
 
   scenario "without all item information" do

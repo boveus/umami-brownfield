@@ -4,10 +4,12 @@ RSpec.feature "admin can go to edit an item" do
   scenario "and update that item" do
     admin = create(:user, role: 1)
     visit root_path
+
     click_on("Login")
     fill_in "user[name]", with: admin.name
     fill_in "user[password]", with: "Password"
     click_on("Log in")
+
     item = create(:item)
     tag = create(:tag)
 
@@ -23,14 +25,16 @@ RSpec.feature "admin can go to edit an item" do
 
     expect(current_path).to eq(edit_admin_item_path(Item.find_by(name: item.name)))
 
+
     fill_in "item[name]", with: item.name
     fill_in "item[description]", with: item.description
     fill_in "item[price]", with: item.price
     fill_in "item[image]", with: item.image
     check "#{tag.name}"
     within("p") do
-      click_on("Update")
+      click_on("Update Item")
     end
+
 
     expect(current_path).to eq(item_path(Item.find_by(name: item.name)))
     expect(page).to have_content("#{item.name} updated")
