@@ -9,7 +9,12 @@ class User < ApplicationRecord
 
   enum role: [:default, :admin, :business_manager]
 
-  def top_level_role
+
+  def self.all_business_managers
+    joins(:roles).where(permission_level: 3)
+  end
+
+  def top_level_roles
     top_role = roles
     .where(permission_level: roles.select('MAX(permission_level)'))
     .first

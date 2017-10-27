@@ -16,5 +16,10 @@
         <p><%= link_to "Edit Vendor Info", edit_vendor_path(@vendor) %> </p>
       </div>
     </div>
+    <div class="business_managers_list">
+        <% @vendor.users.business_manager.each do |user| %>
+        <%= user.name %>
+        <% end %>
+    </div>
   </div>
 </div>
