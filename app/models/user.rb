@@ -9,6 +9,11 @@ class User < ApplicationRecord
 
   enum role: [:default, :admin, :business_manager]
 
+
+  def self.all_business_managers
+    joins(:roles).where(permission_level: 3)
+  end
+
   def top_level_role
     top_role = roles
     .where(permission_level: roles.select('MAX(permission_level)'))
@@ -28,6 +33,10 @@ class User < ApplicationRecord
     roles.exists?(name: "platform_admin")
   end
 
+  def business_admin?
+    roles.exists?(name: "business_admin")
+  end
+
   def registered_user?
     roles.exists?(name: "registered_user")
   end
@@ -45,7 +54,7 @@ class User < ApplicationRecord
       user.image = auth["info"]["image"]
       user.address = "123 ABC St"
       user.password = 'n/a'
-      user.roles 
+      user.roles
       user.oauth_token = auth["credentials"]["token"]
       user.oauth_expires_at = Time.at(auth["credentials"]["expires_at"]) if auth["credentials"]["expires_at"]
       user.save

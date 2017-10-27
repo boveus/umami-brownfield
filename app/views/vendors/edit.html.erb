@@ -1,0 +1,12 @@
+<div class="card grey darken-1 large">
+  <div class="card-content white-text">
+    <span class="card-title">Edit Vendor Info</small></span>
+    <hr>
+    <%= form_for(@vendor) do |f| %>
+    <p>Name: <%= f.text_field :name %></p>
+    <p>Description: <%= f.text_area :description %></p>
+    <p class="vendor_image">Image Url: <%= f.text_field :image %></p>
+    <a class="waves-effect waves-light btn teal darken-4"><%= f.submit("Update") %></a>
+    <% end %>
+  </div>
+</div>

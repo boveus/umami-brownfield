@@ -7,20 +7,19 @@
       <div class="card-image">
         <%= image_tag @vendor.image %>
         <span class="card-title black"><%= @vendor.name.titleize %></span>
+
       </div>
       <div class="card-content">
         <p><%= @vendor.description %></p><br>
-        <% if @vendor.online? %>
-        <p><%= link_to "Take business offline", vendor_path(@vendor, vendor: {status: "offline"}),
-            method: "patch", data: {confirm: "Really take #{@vendor.name} offline?" } %></p>
-        <% else %>
-        <p><%= link_to "Put business back online", vendor_path(@vendor, vendor: {status: "online"}),
-            method: "patch", data: {confirm: "Really take #{@vendor.name} online?" } %></p>
-        <% end %>
         <p><%= link_to "View Items", vendor_items_path(@vendor) %> </p>
         <p><%= link_to "View Orders", vendor_orders_path(@vendor) %> </p>
-        </div>
+        <p><%= link_to "Edit Vendor Info", edit_vendor_path(@vendor) %> </p>
       </div>
+    </div>
+    <div class="business_managers_list">
+        <% @vendor.all_business_managers.each do |user| %>
+        <%= user.name %>
+        <% end %>
     </div>
   </div>
 </div>

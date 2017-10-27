@@ -8,6 +8,8 @@ class PermissionsService
   def authorized?
     if @user.platform_admin?
       return platform_admin_permissions
+    elsif @user.business_admin?
+      return business_admin_permissions
     elsif @user.business_manager?
       return business_manager_permissions
     elsif @user.admin?
@@ -17,6 +19,13 @@ class PermissionsService
     else
       return default_permissions
     end
+  end
+
+  def business_admin_permissions
+    if business_manager_permissions
+      return true
+    end
+    return true if @controller == 'vendors'
   end
 
   def business_manager_permissions
@@ -29,10 +38,10 @@ class PermissionsService
   end
 
   def platform_admin_permissions
-    if business_manager_permissions
+    if business_manager_permissions || business_admin_permissions
       return true
     else
-    return true if @controller == 'vendors' && (%w(index show update)).include?(@action)
+      return true if @controller == 'vendors' && (%w(index show update)).include?(@action)
     end
   end
 
@@ -50,9 +59,9 @@ class PermissionsService
     if default_permissions
       return true
     else
-    return true if @controller == 'orders'
-    return true if @controller == 'password' && (%w(index show)).include?(@action)
-    return true if @controller == 'users'
+      return true if @controller == 'orders'
+      return true if @controller == 'password' && (%w(index show)).include?(@action)
+      return true if @controller == 'users'
     end
   end
 
