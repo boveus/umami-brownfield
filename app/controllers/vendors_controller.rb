@@ -5,7 +5,7 @@ class VendorsController < ApplicationController
 
   def show
     @vendor = Vendor.find(params[:id])
-    
+
   end
 
   def edit
@@ -13,11 +13,11 @@ class VendorsController < ApplicationController
   end
 
   def update
-    vendor = Vendor.find(params[:id])
-    vendor.update(vendor_params)
-    if vendor.save
-      flash[:alert] = "You're awesome! #{vendor.name} updated!"
-      redirect_to vendor_path
+    @vendor = Vendor.find(params[:id])
+    @vendor.update(vendor_params)
+    if @vendor.save
+      flash[:alert] = "You're awesome! #{@vendor.name} updated!"
+      redirect_to vendor_path(@vendor)
     else
       flash[:alert] = "That sure didn't work. Try again, please."
       render :edit
@@ -27,18 +27,7 @@ class VendorsController < ApplicationController
   private
 
   def vendor_params
-    params.require(:vendor).permit(:name, :description, :image)
+    params.require(:vendor).permit(:status, :name, :description, :image)
   end
-  
-  def update
-    @vendor = Vendor.find(params[:id])
-    @vendor.update(vendor_params)
-    redirect_back(fallback_location: root_path)
-  end
-  
-  private
-  
-    def vendor_params
-      params.permit(:status, :id)
-    end
+
 end

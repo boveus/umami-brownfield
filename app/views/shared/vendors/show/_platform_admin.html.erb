@@ -11,10 +11,10 @@
       <div class="card-content">
         <p><%= @vendor.description %></p><br>
         <% if @vendor.online? %>
-        <p><%= link_to "Take business offline", vendor_path(@vendor, status: "offline"),
+        <p><%= link_to "Take business offline", vendor_path(@vendor, vendor: {status: "offline"}),
             method: "patch", data: {confirm: "Really take #{@vendor.name} offline?" } %></p>
         <% else %>
-        <p><%= link_to "Put business back online", vendor_path(@vendor, status: "online"),
+        <p><%= link_to "Put business back online", vendor_path(@vendor, vendor: {status: "online"}),
             method: "patch", data: {confirm: "Really take #{@vendor.name} online?" } %></p>
         <% end %>
         <p><%= link_to "View Items", vendor_items_path(@vendor) %> </p>
