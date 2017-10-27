@@ -38,7 +38,7 @@ class PermissionsService
   end
 
   def platform_admin_permissions
-    if business_manager_permissions
+    if business_manager_permissions || business_admin_permissions
       return true
     else
       return true if @controller == 'vendors' && (%w(index show update)).include?(@action)
