@@ -14,7 +14,7 @@ class User < ApplicationRecord
     joins(:roles).where(permission_level: 3)
   end
 
-  def top_level_roles
+  def top_level_role
     top_role = roles
     .where(permission_level: roles.select('MAX(permission_level)'))
     .first

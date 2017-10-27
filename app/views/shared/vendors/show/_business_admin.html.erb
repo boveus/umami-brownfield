@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="business_managers_list">
-        <% @vendor.users.business_manager.each do |user| %>
+        <% @vendor.all_business_managers.each do |user| %>
         <%= user.name %>
         <% end %>
     </div>
