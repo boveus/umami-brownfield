@@ -23,6 +23,5 @@ feature "business admin logs in" do
 
     expect(page).to have_content(users[0].name)
     expect(page).to have_content(users[1].name)
-
   end
 end
