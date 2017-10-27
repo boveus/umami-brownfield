@@ -9,6 +9,9 @@ require 'csv'
 
 Item.destroy_all
 Tag.destroy_all
+Vendor.destroy_all
+User.destroy_all
+Order.destroy_all
 
 items = CSV.foreach "./db/items.csv", headers: true, header_converters: :symbol
 
@@ -43,32 +46,29 @@ end
  20.times do
   Tag.create!(name: Faker::Address.unique.country)
  end
-
- 10.times do
-   User.create!(name: Faker::Name.unique.name, address: Faker::Address.street_address, email: Faker::Internet.email, password: "123")
- end
-
+ 
  user_collection = User.all
+ item_collection = Item.all
 
- 10.times do
-   Order.create!(user_id: user_collection.sample.id)
+ 1000.times do
+   User.create!(name: Faker::Name.unique.name, address: Faker::Address.street_address, email: Faker::Internet.email, password: "123")
+   puts "Ding #{User.all.count}"
+   10.times do
+     Order.create!(user_id: user_collection.sample.id, items: (item_collection.sample(rand(1..4))) )
+   end
  end
 
  tag_collection = Tag.all
- item_collection = Item.all
  order_collection = Order.all
+ order_items = OrderItem.all
+
 
  item_collection.each do |item|
    item.tags << tag_collection.sample(rand(1..5))
  end
 
- order_collection.each do |order|
-   order.items << item_collection.sample(rand(1..8))
- end
 
-order_items = OrderItem.all
-
-order_items.each do |order_item|
-  order_item.item_price_at_order unless order_item.item_price_record
-  order_item.save
-end
+  order_items.each do |order_item|
+    order_item.item_price_at_order unless order_item.item_price_record
+    order_item.save
+  end

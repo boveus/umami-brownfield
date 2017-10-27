@@ -28,6 +28,10 @@ class User < ApplicationRecord
   def business_manager?
     roles.exists?(name: "business_manager")
   end
+  
+  def platform_admin?
+    roles.exists?(name: "platform_admin")
+  end
 
   def business_admin?
     roles.exists?(name: "business_admin")
