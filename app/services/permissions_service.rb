@@ -50,8 +50,9 @@ class PermissionsService
     if default_permissions
       return true
     else
-    return true if @controller == 'orders' 
+    return true if @controller == 'orders'
     return true if @controller == 'password' && (%w(index show)).include?(@action)
+    return true if @controller == 'users'
     end
   end
 
